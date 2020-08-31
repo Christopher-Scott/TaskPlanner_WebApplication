@@ -13,7 +13,8 @@
             }
             
             body{
-                font-size:16px;
+                font-size: 16px;
+                margin: 10px;                
             }
             
             #titleNav{
@@ -25,45 +26,120 @@
                 width:100%;                    
             }
             
+            .flex-container{
+                display: flex;
+                flex-direction: column;
+            }
+            #title{
+                font-size: 28px;
+            }
+            
+            #nav{
+                font-size: 18px;
+            }
+            
+            a.nav:link{
+                text-decoration: none;
+                
+                color: blue;
+            }
+            
+            a.nav:visited{
+                text-decoration: none;
+                
+                color: blueviolet;
+            }
+            
+            /* hover must come after link, visited */
+            a.nav:hover{
+                text-decoration-line: default;
+                
+                background-color: yellow;
+            }
+              
+            #content {
+                padding: 12px;
+                margin-top: 40px;
+                margin-bottom: 80px;
+                padding-bottom: 80px;
+            }
+            
             #footer {
                 position: fixed;
                 bottom: 0px;
                 left: 0px;
-                z-index:1;
+                z-index: 1;
                 
                 width: 100%;
                 text-align:center;
                 padding: 10px;
             }
+            
+            img {
+                display:block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 40%
+            }
+            
+            
+            @media only screen and (min-width: 600px) {
+                .flex-container{
+                    display: flex;
+                    flex-flow: row;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+                
+            }
         </style>
     </head>
     <body>
-        <div id="titlenav">
+        <div id="titlenav" class="flex-container">
             <div id ="title">
                 Student Assignment Planner
             </div>
             <div id ="nav">
                 <!-- Site is still under development, links do not work --> 
-                <a href="">Home</a>
+                <a href="" class="nav">Home</a>
                 |
-                <a href="">Blog</a>
+                <a href="" class="nav">Blog</a>
             </div>
         </div>
         <div id="content">
-            <!-- ADD IMAGE HERE -->
-            <img src="" alt="TODO">
+            
+            <img src="pics/paper-planner.jpg" alt="Assignment Planner Book">
             
             <!-- functionality description-->
             <p>
-                TODO
+                <strong>Easily keep track of your assignments, tasks, and goals!</strong>           
+                
+                This site will provide a simple list based assignment or task planner.
+                Each user can enter a text description and an associated due date when creating a new entry.
+                At a later date tasks will be sortable based upon due date or other parameters.  Entries could even
+                be used for notes, similar to <a href="evernote.com">Evernote</a>.
+                
             </p>
-            <!-- Description of database table -->
+            
+            
+            <!-- Description of database table -->   
             <p>
-                TODO
+                The database table will consist of the following:
             </p>
+            <ul>
+                
+                <li>A due date specified by the user associated with this entry</li>
+                <li>A text description of the assignment/task</li>
+                <li>A record of the user(not entered by user) as a foreign key</li>
+            </ul>
+            
             <!-- Description of web dev experience -->
             <p>
-                TODO
+                I have limited web development experience.  I completed a Lynda tutorial on HTML, and feel reasonably comfortable
+                with the different tags and structure.  The tutorial did include some basic CSS and javascript.  
+                Thus my experience with CSS is less, and will require looking up the syntax
+                more frequently.  I know only the basics of javascript syntax, but am confident it will not be terribly difficult
+                to pick up based on my experience with other programming languages.
             </p>
             <!-- What was easy, hard, and valuable about this HW -->
             <p>

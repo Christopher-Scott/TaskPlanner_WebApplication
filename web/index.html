@@ -7,63 +7,88 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <style>
+            * {
+                box-sizing: border-box;
+            }
+            
             html,body{
                 margin:0;
                 padding:0;            
             }
             
             body{
-                font-size: 16px;
-                margin: 10px;                
+                font-size: 1.2rem;
+                margin: 0px;
+                background-color: lightgrey;                
             }
-            
-            #titleNav{
-                position:fixed;
-                top:0px;
-                left:0px;
-                z-index: 1;
-                
-                width:100%;                    
-            }
-            
-            .flex-container{
+        /* Fixed Title and Navigation Bar */            
+            #titlenav{
                 display: flex;
                 flex-direction: column;
+                position:fixed;
+                top: 0px;
+                left: 0px;
+                z-index: 1;
+                           
+                padding: 1rem;
+                width:100%;
+                background-color: #80A5D9;
             }
+            
+
             #title{
-                font-size: 28px;
+/*                position: fixed;
+                top: 0px;
+                left: 0px;                    */
+                font-size: 2rem;
+                white-space: nowrap;
+                
+                
             }
             
             #nav{
-                font-size: 18px;
+/*                position: fixed;
+                top: 0px;
+                right: 0px;
+                text-align: right;*/
+                font-size: 1.5rem;
+                white-space: nowrap;
+                
             }
-            
+        
+        /* Pseudo-classes for navigation bar*/
             a.nav:link{
                 text-decoration: none;
                 
-                color: blue;
+                color: black;
             }
             
             a.nav:visited{
-                text-decoration: none;
-                
+                text-decoration: none;    
                 color: blueviolet;
             }
             
             /* hover must come after link, visited */
             a.nav:hover{
                 text-decoration-line: default;
-                
-                background-color: yellow;
+                background-color: #FFEC70;
             }
-              
+        
+        /* Content */
             #content {
-                padding: 12px;
-                margin-top: 40px;
-                margin-bottom: 80px;
-                padding-bottom: 80px;
+                padding: 2rem;                
+                padding-top: 7rem;
+                
             }
             
+            #content-image {
+                display:block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 40%
+            }
+            
+        /* Footer Bar */
             #footer {
                 position: fixed;
                 bottom: 0px;
@@ -72,23 +97,21 @@
                 
                 width: 100%;
                 text-align:center;
+                background-color: #80A5D9;
                 padding: 10px;
             }
             
-            img {
-                display:block;
-                margin-left: auto;
-                margin-right: auto;
-                width: 40%
-            }
-            
-            
+        /* Responsive Design for Desktop */
             @media only screen and (min-width: 600px) {
-                .flex-container{
-                    display: flex;
-                    flex-flow: row;
+                #titlenav {
+                    flex-direction: row;
                     justify-content: space-between;
                     align-items: center;
+                }
+           
+                
+                #content {
+                    padding-top: 5rem;
                 }
                 
             }
@@ -108,7 +131,7 @@
         </div>
         <div id="content">
             
-            <img src="pics/paper-planner.jpg" alt="Assignment Planner Book">
+            <img id="content-image" src="pics/paper-planner.jpg" alt="Assignment Planner Book">
             
             <!-- functionality description-->
             <p>
@@ -117,7 +140,7 @@
                 This site will provide a simple list based assignment or task planner.
                 Each user can enter a text description and an associated due date when creating a new entry.
                 At a later date tasks will be sortable based upon due date or other parameters.  Entries could even
-                be used for notes, similar to <a href="evernote.com">Evernote</a>.
+                be used for notes, similar to <a href="https://evernote.com">Evernote</a>.
                 
             </p>
             
@@ -136,9 +159,10 @@
             <!-- Description of web dev experience -->
             <p>
                 I have limited web development experience.  I completed a Lynda tutorial on HTML, and feel reasonably comfortable
-                with the different tags and structure.  The tutorial did include some basic CSS and javascript.  
+                with the different tags and structure.  The tutorial did include some basic CSS and javascript, 
+                however the information was restricted to what was necessary for the module.  
                 Thus my experience with CSS is less, and will require looking up the syntax
-                more frequently.  I know only the basics of javascript syntax, but am confident it will not be terribly difficult
+                more frequently.  I know only the basics of javascript syntax and am confident it will not be terribly difficult
                 to pick up based on my experience with other programming languages.
             </p>
             <!-- What was easy, hard, and valuable about this HW -->

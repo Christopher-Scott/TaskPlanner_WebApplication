@@ -119,4 +119,12 @@ h2 {
     }
 
 }
+    /* If screen is too wide, a lot of white space is created due to the multiple columns.
+    Reduce the picture size to compensate.*/
+@media only screen and (min-width: 1800px) {
+    #column33 {
+        width: 25%
+    }
+   
+}
 

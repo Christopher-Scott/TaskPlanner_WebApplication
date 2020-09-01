@@ -5,9 +5,9 @@
         <title>Student Assignment Planner</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        <link rel="stylesheet" type="text/css" href="styles.css">
-     
+
+        <link rel="stylesheet" type="text/css" href="style/styles.css">
+
     </head>
     <body>
         <div id="titleNav" class="flex-container">
@@ -22,32 +22,35 @@
             </div>
         </div>
         <div id="content">
-            
-            <img id="content-image" src="pics/paper-planner.jpg" alt="Assignment Planner Book">
-            
-            <!-- functionality description-->
-            <p>
-                <strong>Easily keep track of your assignments, tasks, and goals!</strong>           
-                
-                This site will provide a simple list based assignment or task planner.
-                Each user can enter a text description and an associated due date when creating a new entry.
-                At a later date tasks will be sortable based upon due date or other parameters.  Entries could even
-                be used for notes, similar to <a href="https://evernote.com">Evernote</a>.
-                
-            </p>
-            
-            
+
+
+            <div class="row">
+                <!-- functionality description-->
+                <p>
+                    <strong>Easily keep track of your assignments, tasks, and goals!</strong>           
+
+                    This site will provide a simple list based assignment or task planner.
+                    Users can enter a text description and an associated due date when creating a new entry.
+                    At a later date tasks will be sortable based upon due date or other parameters.  Entries could even
+                    be used for notes, similar to <a href="https://evernote.com">Evernote</a>.
+
+                </p>
+
+                <img id="column33" src="pics/paper-planner.jpg" alt="Assignment Planner Book">
+            </div>
+
+
             <!-- Description of database table -->   
             <p>
                 The database table will consist of the following:
             </p>
             <ul>
-                
+
                 <li>A due date specified by the user associated with this entry</li>
                 <li>A text description of the assignment/task</li>
                 <li>A record of the user(not entered by user) as a foreign key</li>
             </ul>
-            
+
             <!-- Description of web dev experience -->
             <h2>Web Development Experience</h2>
             <p>
@@ -61,18 +64,18 @@
             <!-- What was easy, hard, and valuable about this HW -->
             <h2>About this Assignment</h2>
             <p>
-               I found this assignment relatively straight-forward until I started the CSS styling.  
-               Constructing the HTML structure went smoothly, and I did not have to look up much to accomplish my goals.
-               When creating the styling for the page, I had to look up much more from W3schools to find syntax or the exact property
-               I needed.  I also ran into an issue when setting the titleNav to be fixed and styled properly.  When I added background colors
-               to my div they were not displaying, the titleNav was not fixed despite the CSS code being correct, and the flex-box was not
-               responding properly.  The bug ended up being very simple.  I had a typo in the div ID.  My CSS code was fine, but was not being applied
-               because the selector didn't have the typo.  I learned that I don't have efficient debugging behaviors established yet for web development.
-               Next time when my styles aren't working, I'll check the selector and ID/Class first.
-               
-          
+                I found this assignment relatively straight-forward until I started the CSS styling.  
+                Constructing the HTML structure went smoothly, and I did not have to look up much to accomplish my goals.
+                When creating the styling for the page, I had to look up much more from W3schools to find syntax or the exact property
+                I needed.  I also ran into an issue when setting the titleNav to be fixed and styled properly.  When I added background colors
+                to my div they were not displaying, the titleNav was not fixed despite the CSS code being correct, and the flex-box was not
+                responding properly.  The bug ended up being very simple.  I had a typo in the div ID.  My CSS code was fine, but was not being applied
+                because the selector didn't have the typo.  I learned that I don't have efficient debugging behaviors established yet for web development.
+                Next time when my styles aren't working, I'll check the selector and ID/Class first.
+
+
             </p>
-            
+
         </div>
         <div id="footer">
             Christopher Scott

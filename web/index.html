@@ -6,119 +6,11 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <style>
-            * {
-                box-sizing: border-box;
-            }
-            
-            html,body{
-                margin:0;
-                padding:0;            
-            }
-            
-            body{
-                font-size: 1.2rem;
-                margin: 0px;
-                background-color: lightgrey;                
-            }
-        /* Fixed Title and Navigation Bar */            
-            #titlenav{
-                display: flex;
-                flex-direction: column;
-                position:fixed;
-                top: 0px;
-                left: 0px;
-                z-index: 1;
-                           
-                padding: 1rem;
-                width:100%;
-                background-color: #80A5D9;
-            }
-            
-
-            #title{
-/*                position: fixed;
-                top: 0px;
-                left: 0px;                    */
-                font-size: 2rem;
-                white-space: nowrap;
-                
-                
-            }
-            
-            #nav{
-/*                position: fixed;
-                top: 0px;
-                right: 0px;
-                text-align: right;*/
-                font-size: 1.5rem;
-                white-space: nowrap;
-                
-            }
-        
-        /* Pseudo-classes for navigation bar*/
-            a.nav:link{
-                text-decoration: none;
-                
-                color: black;
-            }
-            
-            a.nav:visited{
-                text-decoration: none;    
-                color: blueviolet;
-            }
-            
-            /* hover must come after link, visited */
-            a.nav:hover{
-                text-decoration-line: default;
-                background-color: #FFEC70;
-            }
-        
-        /* Content */
-            #content {
-                padding: 2rem;                
-                padding-top: 7rem;
-                
-            }
-            
-            #content-image {
-                display:block;
-                margin-left: auto;
-                margin-right: auto;
-                width: 40%
-            }
-            
-        /* Footer Bar */
-            #footer {
-                position: fixed;
-                bottom: 0px;
-                left: 0px;
-                z-index: 1;
-                
-                width: 100%;
-                text-align:center;
-                background-color: #80A5D9;
-                padding: 10px;
-            }
-            
-        /* Responsive Design for Desktop */
-            @media only screen and (min-width: 600px) {
-                #titlenav {
-                    flex-direction: row;
-                    justify-content: space-between;
-                    align-items: center;
-                }
-           
-                
-                #content {
-                    padding-top: 5rem;
-                }
-                
-            }
-        </style>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+     
     </head>
     <body>
-        <div id="titlenav" class="flex-container">
+        <div id="titleNav" class="flex-container">
             <div id ="title">
                 Student Assignment Planner
             </div>
@@ -157,17 +49,28 @@
             </ul>
             
             <!-- Description of web dev experience -->
+            <h2>Web Development Experience</h2>
             <p>
                 I have limited web development experience.  I completed a Lynda tutorial on HTML, and feel reasonably comfortable
-                with the different tags and structure.  The tutorial did include some basic CSS and javascript, 
+                with the different tags and structure.  The tutorial did include some basic CSS and Javascript, 
                 however the information was restricted to what was necessary for the module.  
                 Thus my experience with CSS is less, and will require looking up the syntax
-                more frequently.  I know only the basics of javascript syntax and am confident it will not be terribly difficult
+                more frequently.  I know only the basics of Javascript syntax and am confident it will not be terribly difficult
                 to pick up based on my experience with other programming languages.
             </p>
             <!-- What was easy, hard, and valuable about this HW -->
+            <h2>About this Assignment</h2>
             <p>
-                TODO
+               I found this assignment relatively straight-forward until I started the CSS styling.  
+               Constructing the HTML structure went smoothly, and I did not have to look up much to accomplish my goals.
+               When creating the styling for the page, I had to look up much more from W3schools to find syntax or the exact property
+               I needed.  I also ran into an issue when setting the titleNav to be fixed and styled properly.  When I added background colors
+               to my div they were not displaying, the titleNav was not fixed despite the CSS code being correct, and the flex-box was not
+               responding properly.  The bug ended up being very simple.  I had a typo in the div ID.  My CSS code was fine, but was not being applied
+               because the selector didn't have the typo.  I learned that I don't have efficient debugging behaviors established yet for web development.
+               Next time when my styles aren't working, I'll check the selector and ID/Class first.
+               
+          
             </p>
             
         </div>

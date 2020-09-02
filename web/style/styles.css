@@ -55,7 +55,6 @@ a.nav:visited{
 
 /* hover must come after link, visited */
 a.nav:hover{
-    text-decoration-line: default;
     background-color: #FFEC70;
 }
 
@@ -75,6 +74,11 @@ a.nav:hover{
 #column33 {
     width: 100%;
     margin: 1rem;
+}
+
+#column66 {
+    width: 100%;
+    padding-right: 1rem
 }
 
 h2 {
@@ -117,14 +121,11 @@ h2 {
     #column33 {
         width: 33%;
     }
+    
+    #column66 {
+    width: 66%
+}
 
 }
-    /* If screen is too wide, a lot of white space is created due to the multiple columns.
-    Reduce the picture size to compensate.*/
-@media only screen and (min-width: 1800px) {
-    #column33 {
-        width: 25%
-    }
-   
-}
+
 

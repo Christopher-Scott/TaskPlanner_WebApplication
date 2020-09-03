@@ -14,11 +14,39 @@
             <div id ="title">
                 Student Assignment Planner
             </div>
-            <div id ="nav">
-                <!-- Site is still under development, links do not work --> 
-                <a href="" class="nav">Home</a>
-                |
-                <a href="" class="nav">Blog</a>
+            <div id="nav">
+                <div class="dropdown">
+                    <a href="" class="nav">Home</a>
+                </div>
+                <div class="dropdown">
+                    <div class="drop_header" onclick="drop(this)">Account</div>
+                    <div class="drop_content">
+                        <a href="">Register</a>
+                        <a href="">Log In</a>
+                        <a href="">Profile</a>
+                        <a href="">Log Out</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <div class="drop_header" onclick="drop(this)">Search</div>
+                    <div class="drop_content">
+                        <a href="">Users</a>
+                        <a href="">Tasks</a>
+                    </div>
+                </div>
+                
+                <div class="dropdown">
+                    <div class="drop_header" onclick="drop(this)">Tutorial</div>
+                    <div class="drop_content">
+                        <a href="">Proposal</a>
+                        <a href="">Proof of Concept</a>
+                        <a href="">Tutorial Home</a>
+                        <a href="">Demo</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="" class="nav">Blog</a>
+                </div>
             </div>
         </div>
         <div id="content">
@@ -83,5 +111,7 @@
         <div id="footer">
             Christopher Scott
         </div>
+        
+        <script src="js/drop.js"></script>
     </body>
 </html>

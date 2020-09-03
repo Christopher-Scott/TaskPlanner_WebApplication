@@ -40,6 +40,38 @@ img {
     font-size: 1.5rem;
     white-space: nowrap;
 }
+/* ---------------Dropdown menu -----------------*/
+.dropdown{
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    
+    margin-right: 0.5rem;
+}
+
+.drop_header {
+    
+}
+
+.dropdown .drop_content {
+    font-size: 1.25rem;
+    
+    position: absolute;
+    z-index: 3;
+    
+    right: 0px;
+    
+    opacity: 0;
+}
+
+.dropdown .show {
+    opacity: 1;
+}
+
+.dropdown .hide {
+    opacity: 0;
+}
+
 
 /* Pseudo-classes for navigation bar*/
 a.nav:link{

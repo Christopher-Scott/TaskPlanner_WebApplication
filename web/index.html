@@ -17,7 +17,7 @@
             </div>
             <div id="nav">
                 <div class="dropdown">
-                    <a href="" class="nav">Home</a>
+                    <a href="#/home" class="nav">Home</a>
                 </div>
                 <div class="dropdown">
                     <div class="drop_header">Account</div>
@@ -46,67 +46,11 @@
                     </div>
                 </div>
                 <div class="dropdown">
-                    <a href="" class="nav">Blog</a>
+                    <a href="#/blog" class="nav">Blog</a>
                 </div>
             </div>
         </div>
-        <div id="content">
-
-            <div class="row">
-                <div id="column66">
-                    <!-- functionality description-->
-                    <p>
-                        <strong>Easily keep track of your assignments, tasks, and goals!</strong>           
-
-                        This site will provide a simple list based assignment or task planner.
-                        Users can enter a text description and an associated due date when creating a new entry.
-                        At a later date tasks will be sortable based upon due date or other parameters.  Entries could even
-                        be used for notes, similar to <a href="https://evernote.com">Evernote</a>.
-
-                    </p>
-
-                    <!-- Description of database table -->   
-                    <p>
-                        The database table will consist of the following:
-                    </p>
-                    <ul>
-
-                        <li>A due date specified by the user associated with this entry</li>
-                        <li>A text description of the assignment/task</li>
-                        <li>A record of the user(not entered by user) as a foreign key</li>
-                    </ul>
-                </div>
-
-                <img id="column33" src="pics/paper-planner.jpg" alt="Assignment Planner Book">
-            </div>
-
-
-
-
-            <!-- Description of web dev experience -->
-            <h2>Web Development Experience</h2>
-            <p>
-                I have limited web development experience.  I completed a Lynda tutorial on HTML, and feel reasonably comfortable
-                with the different tags and structure.  The tutorial did include some basic CSS and Javascript, 
-                however the information was restricted to what was necessary for the module.  
-                Thus my experience with CSS is less, and will require looking up the syntax
-                more frequently.  I know only the basics of Javascript syntax and am confident it will not be terribly difficult
-                to pick up based on my experience with other programming languages.
-            </p>
-            <!-- What was easy, hard, and valuable about this HW -->
-            <h2>About this Assignment</h2>
-            <p>
-                I found this assignment relatively straight-forward until I started the CSS styling.  
-                Constructing the HTML structure went smoothly, and I did not have to look up much to accomplish my goals.
-                When creating the styling for the page, I had to look up much more from W3schools to find syntax or the exact property
-                I needed.  I also ran into an issue when setting the titleNav to be fixed and styled properly.  When I added background colors
-                to my div they were not displaying, the titleNav was not fixed despite the CSS code being correct, and the flex-box was not
-                responding properly.  The bug ended up being very simple.  I had a typo in the div ID.  My CSS code was fine, but was not being applied
-                because the selector didn't have the typo.  I learned that I don't have efficient debugging behaviors established yet for web development.
-                Next time when my styles aren't working, I'll check the selector and ID/Class first.
-
-
-            </p>
+        <div id="content">            
 
         </div>
         <div id="footer">
@@ -114,6 +58,19 @@
         </div>
 
         <script src="js/drop.js"></script>
+        <script src="js/components/home.js"></script>
+        <script src="js/components/blog.js"></script>
+        <script src="js/routeFW.js"></script>
+        <script>
+            "use strict";
+            
+            var routes = [];
+            routes["#/home"] = home;
+            routes["#/blog"] = blog;
+            
+            routeFW({contentID: "content", startLink: "#/home",  routingTable: routes});
+            
+        </script>
 
     </body>
 </html>

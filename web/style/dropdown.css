@@ -9,17 +9,24 @@
 }
 
 .dropdown .drop_content {
-    display: flex;
-    flex-direction: column;
-    font-size: 1.2rem;
+     display: block;
+    
+    font-size: 1rem;
 
     position: absolute;
     z-index: 3;
+    
+    padding-top: 4px;
+    paddding-bottom: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin: 6px;
 
 
     right: 0px;
 
     opacity: 0;
+    /*transition: opacity 0.5s ease 0s;*/ 
 }
 
 .dropdown .show {    
@@ -30,6 +37,7 @@
     border-color: black;
     border-width: thin;
     border-radius: 0.2rem;
+    box-shadow: 2px 2px 3px black;
     padding: 0.2rem;
 }
 
@@ -39,18 +47,21 @@
 
 a.drop:link {
     text-decoration: none;
-    color: white; 
+    color: black;
+
 }
 
 a.drop:visited {
     text-decoration: none;
-    color: white;
+    color: black;
 }
 
 
-/* TODO Search button does not have underline???*/
 a.drop:hover {
-    text-decoration: underline;
+    /*background-color: #1B51A1;*/
+    background-color: #E8E271;
+    border-radius: 0.2rem;
+    
     
 }
 

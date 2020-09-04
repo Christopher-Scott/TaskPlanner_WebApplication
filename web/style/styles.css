@@ -37,8 +37,9 @@ img {
 }
 
 #nav{
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     white-space: nowrap;
+    text-align: right;
 }
 
 
@@ -54,11 +55,6 @@ a.nav:visited{
     text-decoration: none;    
     color: black;
 }
-
-/* hover must come after link, visited */
-/*a.nav:hover{
-    background-color: #FFEC70;
-}*/
 
 /* --------------------------- Content ---------------------------------- */
 #content {

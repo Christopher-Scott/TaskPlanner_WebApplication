@@ -22,26 +22,26 @@
                 <div class="dropdown">
                     <div class="drop_header">Account</div>
                     <div class="drop_content">
-                        <a href="" class="drop">Register</a>
-                        <a href="" class="drop">Log In</a>
-                        <a href="" class="drop">Profile</a>
+                        <a href="" class="drop">Register</a> <br/>
+                        <a href="" class="drop">Log In</a> <br/>
+                        <a href="" class="drop">Profile</a> <br/>
                         <a href="" class="drop">Log Out</a>
                     </div>
                 </div>
                 <div class="dropdown">                    
                     <div class="drop_header">Search</div>
                     <div class="drop_content">
-                        <a href="" class="drop">Users</a>
-                        <a href="" class="drop">Tasks</a>
+                        <a href="" class="drop"> Users </a> <br/>
+                        <a href="" class="drop"> Tasks </a>
                     </div>
                 </div>
 
                 <div class="dropdown">                    
                     <div class="drop_header">Tutorial</div>
                     <div class="drop_content">
-                        <a href="" class="drop">Proposal</a>
-                        <a href="" class="drop">Proof of Concept</a>
-                        <a href="" class="drop">Tutorial Home</a>
+                        <a href="" class="drop">Proposal</a> <br/>
+                        <a href="" class="drop">Proof of Concept</a> <br/>
+                        <a href="" class="drop">Tutorial Home</a> <br/>
                         <a href="" class="drop">Demo</a>
                     </div>
                 </div>
@@ -64,10 +64,15 @@
         <script>
             "use strict";
             
+            // call dropdown functionality with parameters object
+            drop({headerClass: "drop_header", contentClass: "drop_content"});
+            
+            // set up routing table
             var routes = [];
             routes["#/home"] = home;
             routes["#/blog"] = blog;
             
+            // call router framework with parameters object
             routeFW({contentID: "content", startLink: "#/home",  routingTable: routes});
             
         </script>

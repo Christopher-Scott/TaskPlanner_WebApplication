@@ -35,7 +35,14 @@ function blog(){
             </p>
             <h2>JavaScript UI</h2>
             <p>
-                TODO write blog post
+                This assignment posed new challenges in the form of JavaScript.  Thankfully the sample code provided a good
+                reference for the goals of thes assignment.  I found it particularly difficult to get the behavior for the
+                dropdown menus to be mutually exclusive.  Ultimately, this was a logic problem. While it was not strictly an 
+                issue with JS, my inexperience caused me to question my approach.  I was helped by following the JS software
+                design principles when I began moving my code to function from an external file.  The logic flow made more
+                sense in that context and highlighted where I had gone wrong.  When it came time to do the routing I had
+                a much easier time and found it easy to adhere to the dependency injection principle.  I was then able to
+                go back and change my dropdown code to follow a similar scheme.
             </p>
             `
     

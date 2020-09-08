@@ -5,10 +5,9 @@
     cursor: pointer;
 
     margin-right: 0.5rem;
-/*    padding: 0.1rem;*/
 }
 
-.dropdown .drop_content {
+.drop_content {
      display: block;
     
     font-size: 1rem;
@@ -25,8 +24,8 @@
 
     right: 0px;
 
-    opacity: 0;
-    /*transition: opacity 0.5s ease 0s;*/ 
+    transition: opacity 0.5s;
+    opacity: 0; 
 }
 
 .dropdown .show {    
@@ -39,14 +38,31 @@
     border-radius: 0.2rem;
     box-shadow: 2px 2px 3px black;
     padding: 0.2rem;
+    z-index: 4; /* bring box to the front so it is not covered by other hidden dropdowns*/
+    visibility: visible;
 }
 
 .dropdown .hide {
     opacity: 0;
+    z-index: 0; /* send box to the back when it is not visible */
+    visibility: hidden;
+}
+a.drop{
+    /* Make clickable area larger */
+    display: block;
+    padding: 4px 4px;
+    
+    border-style: solid;
+    border-color: black;
+    border-width: thin;
+    border-radius: 5px;
+    margin: 4px 1px;
+    
 }
 
 a.drop:link {
     text-decoration: none;
+    background-color: #d6d6d6;
     color: black;
 
 }
@@ -58,10 +74,6 @@ a.drop:visited {
 
 
 a.drop:hover {
-    /*background-color: #1B51A1;*/
-    background-color: #E8E271;
-    border-radius: 0.2rem;
-    
-    
+    background-color: #E8E271 !important;
 }
 

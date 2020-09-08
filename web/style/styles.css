@@ -37,15 +37,16 @@ img {
 }
 
 #nav{
+    margin-top: 1rem;
     font-size: 1.2rem;
     white-space: nowrap;
-    text-align: right;
+    text-align: left;
 }
 
 
 
 /* Pseudo-classes for navigation bar*/
-a.nav:link{
+/*a.nav:link{
     text-decoration: none;
 
     color: black;
@@ -54,7 +55,7 @@ a.nav:link{
 a.nav:visited{
     text-decoration: none;    
     color: black;
-}
+}*/
 
 /* --------------------------- Content ---------------------------------- */
 #content {
@@ -99,11 +100,16 @@ h2 {
 }
 
 /* ------------------ Responsive Design for Desktop --------------------- */
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 800px) {
     #titleNav {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        text-align: right;
+    }
+    
+    #nav {
+        margin-top: 0rem;
     }
 
     /* adjust padding */

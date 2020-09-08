@@ -1,6 +1,9 @@
 function drop(params) {
+    // provide default values
     var headerClass = params.headerClass || "dropHeader";
     var contentClass = params.contentClass || "dropContent";
+    var visibleClass = params.visibleClass || "show";
+    var hiddenClass = params.hiddenClass || "hide";
     
     window.onclick = dropHandler;
     function dropHandler(event){
@@ -12,16 +15,17 @@ function drop(params) {
             var content = clickedElem.parentElement.getElementsByClassName(contentClass)[0];
 
 
-            if(content.classList.contains("show")){
+            if(content.classList.contains(visibleClass)){
                 hide(content); // clicked dropdown is currently open, so hide it
             }
-            else{
-                // close dropdowns
-                for (var i = 0; i < dropContentList.length; i++) {
-                    hide(dropContentList[i]);
-                }
-                // Open the selected dropdown
+            else{                                
                 show(content);
+                // close other dropdowns
+                for (var i = 0; i < dropContentList.length; i++) {
+                    if ( dropContentList[i] !== content){
+                        hide(dropContentList[i]);
+                    }
+                }
             }
         }
         // user clicked elsewhere on the page, close all the dropdowns
@@ -33,13 +37,13 @@ function drop(params) {
         }
 
         function hide(elem) {
-            elem.classList.remove("show");
-            elem.classList.add("hide");
+            elem.classList.remove(visibleClass);
+            elem.classList.add(hiddenClass);
         }
 
         function show(elem) {
-            elem.classList.remove("hide");
-            elem.classList.add("show");
+            elem.classList.remove(hiddenClass);
+            elem.classList.add(visibleClass);
         }
     }
 };

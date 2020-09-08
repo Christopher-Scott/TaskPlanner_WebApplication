@@ -45,17 +45,17 @@ img {
 
 
 
-/* Pseudo-classes for navigation bar*/
-/*a.nav:link{
+ Pseudo-classes for navigation bar
+a.nav,
+a.nav:link,
+a.nav:visited,
+a.nav:hover,
+a.nav:active{
     text-decoration: none;
-
     color: black;
 }
 
-a.nav:visited{
-    text-decoration: none;    
-    color: black;
-}*/
+
 
 /* --------------------------- Content ---------------------------------- */
 #content {
@@ -105,11 +105,12 @@ h2 {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        text-align: right;
+        
     }
     
     #nav {
         margin-top: 0rem;
+        text-align: right;
     }
 
     /* adjust padding */

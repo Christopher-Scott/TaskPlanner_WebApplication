@@ -42,7 +42,10 @@ function blog(){
                 design principles when I began moving my code to an external file.  The logic flow made more
                 sense in that context and highlighted where I had gone wrong.  When it came time to do the routing I had
                 a much easier time and found it easy to adhere to the dependency injection principle.  I was then able to
-                go back and change my dropdown code to follow a similar scheme.
+                go back and change my dropdown code to follow a similar scheme.  I also had a difficult challenge with the
+                styling of the dropdown menus where the hover area of a link was not what it should be.  By changing the
+                clickable size of the link (using block display and padding), I discovered that the links were being covered
+                by the other hidden dropdown menus.  To solve this I added a higher z-index value to the open dropdown menu.
             </p>
             `
     

@@ -1,0 +1,22 @@
+.slideContainer{
+    font-size: 1.2rem;
+}
+
+.slideContainer div{
+    text-align: center;
+    margin: 30px;
+}
+
+.slideContainer img {
+    border-style: solid;
+    border-color: black;
+    border-width: thin;
+    border-radius: 0.2rem;
+    box-shadow: 2px 2px 3px black;
+}
+
+.slideContainer button {
+    padding: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+}

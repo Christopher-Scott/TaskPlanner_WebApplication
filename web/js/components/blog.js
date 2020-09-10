@@ -47,6 +47,19 @@ function blog(){
                 clickable size of the link (using block display and padding), I discovered that the links were being covered
                 by the other hidden dropdown menus.  To solve this I added a higher z-index value to the open dropdown menu.
             </p>
+            <h2>JavaScript SlideShows</h2>
+            <p>
+                Creating a slideshow as a reusable component gave me a lot more experience in creating page elements purely
+                in javaScript.  It is a topic that we touched on with the routing enhancements, but now I understand more
+                about the mechanics and how to achieve my goals.  My biggest challenge for this assignment was the public
+                method.  I struggled to come up with an idea and then once I decided on a slide number counter I found the
+                implementation to be difficult.  At first I tried wrapping all the code necessary for the slide counter in
+                the public method, but this solution merely appended the element to the end of the slideshow.  It was ugly.
+                I wanted the element to be between the prev and next buttons. As I added functionality to update the slide
+                counter I realized I would need to set up the element in the parent function and have the public function
+                simply enable the slide counter for the slideshow element.  Incorporating the routing and new page was
+                definitely the easiest part of this assignment.  The way we have our routing structured makes it effortless
+                to add or change pages.            
             `
     
     var element = document.createElement("div");

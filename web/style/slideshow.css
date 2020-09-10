@@ -1,13 +1,17 @@
-.slideContainer{
+.slideShow{
     font-size: 1.2rem;
-}
-
-.slideContainer div{
     text-align: center;
-    margin: 30px;
+    padding: 10px;
+    margin: 20px;
 }
 
-.slideContainer img {
+.slideShow h2 {
+    font-size: 1.4rem;
+}
+
+.slideShow img {
+    max-width: 100%;
+    height: auto;
     border-style: solid;
     border-color: black;
     border-width: thin;
@@ -15,8 +19,6 @@
     box-shadow: 2px 2px 3px black;
 }
 
-.slideContainer button {
-    padding: 5px;
-    margin-left: 10px;
-    margin-right: 10px;
+.slideShow button {
+    padding: 5px 10px;
 }

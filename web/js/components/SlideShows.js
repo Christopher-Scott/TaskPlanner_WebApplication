@@ -17,9 +17,15 @@ function SlideShows() {
             // add a caption based on the nickname property
             catsObj[i].caption = catsObj[i].nickname;
         }
-        var ssParams = {objArray: catsObj, id: "slideShow1", className: "slideShow", showCaption: true};
+        var ssParams = {objArray: catsObj,
+            id: "slideShow1", 
+            className: "slideShow", 
+            captionClass: "caption",
+            showCaption: true,
+            header: "Some really great cats!"};
         var ss = MakeSlideShow(ssParams);
         ss.setPicNum(0);
+        ss.enableSlideNum();
         slideShowContainer.appendChild(ss);
         
         
@@ -29,7 +35,11 @@ function SlideShows() {
         for (var i = 0; i < usersObj.length; i++){
             usersObj[i].caption = "";
         }
-        var ssParams = {objArray: usersObj, id: "slideShow2", className: "slideShow", showCaption: false};
+        var ssParams = {objArray: usersObj, 
+            id: "slideShow2", 
+            className: "slideShow", 
+            showCaption: false,
+            header: "Users"};
         var ss = MakeSlideShow(ssParams);
         ss.setPicNum(0);
         slideShowContainer.appendChild(ss);

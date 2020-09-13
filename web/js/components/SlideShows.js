@@ -2,11 +2,9 @@ function SlideShows() {
     var slideShowContainer = document.createElement("div");
     slideShowContainer.classList.add("slideContainer");
     
-//    console.log("inititiating 1st ajax call");
     
     ajax("json/cats.json", processCatList, slideShowContainer);
     
-//    console.log("inititiating 2nd ajax call");
     ajax("json/users.json", processUsersList, slideShowContainer);
    
     
@@ -21,7 +19,7 @@ function SlideShows() {
             id: "slideShow1", 
             className: "slideShow", 
             captionClass: "caption",
-            showCaption: true,
+            bgColor: "#80A5D9", // optional parameter
             header: "Some really great cats!"};
         var ss = MakeSlideShow(ssParams);
         ss.setPicNum(0);
@@ -33,12 +31,11 @@ function SlideShows() {
     
     function processUsersList(usersObj){
         for (var i = 0; i < usersObj.length; i++){
-            usersObj[i].caption = "";
+            usersObj[i].caption = usersObj[i].userEmail;
         }
         var ssParams = {objArray: usersObj, 
             id: "slideShow2", 
-            className: "slideShow", 
-            showCaption: false,
+            className: "slideShow",             
             header: "Users"};
         var ss = MakeSlideShow(ssParams);
         ss.setPicNum(0);

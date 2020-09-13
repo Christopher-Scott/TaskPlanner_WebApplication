@@ -1,8 +1,15 @@
 .slideShow{
+    /* Use inline-block display to 'shrinkwrap' slideshow to its content size*/
+    display: inline-block;
     font-size: 1.2rem;
     text-align: center;
-    padding: 10px;
+    padding: 10px 30px;
     margin: 20px;
+}
+
+.slideShow div{
+    margin: 0px;
+    padding: 10px;
 }
 
 .slideShow h2 {

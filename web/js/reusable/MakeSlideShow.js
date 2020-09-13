@@ -1,7 +1,7 @@
 function MakeSlideShow(params){
     var className = params.className || "slideShow";
     var captionClass = params.captionClass || "caption";
-    var showCaption = params.showCaption || false; // default is false
+    
     
     
     // create element that will be returned
@@ -33,13 +33,11 @@ function MakeSlideShow(params){
     caption.classList.add(captionClass);
     slideshow.append(caption);
     
-    // implement optional parameter to hide or show caption
-    if(showCaption){
-        caption.style = "visibility: visible;";
+    // implement optional parameter to add bg color
+    if(params.bgColor){
+       slideshow.style = "background-color: " + params.bgColor + ";";
     }
-    else{
-        caption.style = "visibility: hidden;";
-    }
+
     
     var backBtn = document.createElement("button");
     backBtn.innerHTML = "Prev";

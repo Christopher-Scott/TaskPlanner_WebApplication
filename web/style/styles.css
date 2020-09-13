@@ -84,6 +84,12 @@ h2 {
     font-size: 1.3rem;
 }
 
+.slideContainer {
+    display: flex;
+    flex-direction: column;    
+    align-items: center;
+    
+}
 
 
 /* --------------------------- Footer Bar ------------------------------- */

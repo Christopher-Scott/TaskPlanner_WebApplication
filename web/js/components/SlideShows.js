@@ -12,7 +12,7 @@ function SlideShows() {
     
     function processCatList(catsObj){
         for (var i = 0; i < catsObj.length; i++){
-            // add a caption based on the nickname property
+            // add a caption based on the nickname property, already has image property
             catsObj[i].caption = catsObj[i].nickname;
         }
         var ssParams = {objArray: catsObj,
@@ -31,6 +31,7 @@ function SlideShows() {
     
     function processUsersList(usersObj){
         for (var i = 0; i < usersObj.length; i++){
+            // add a caption based on the user's email, already has image property
             usersObj[i].caption = usersObj[i].userEmail;
         }
         var ssParams = {objArray: usersObj, 

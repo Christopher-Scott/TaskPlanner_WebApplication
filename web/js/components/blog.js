@@ -59,7 +59,23 @@ function blog(){
                 counter I realized I would need to set up the element in the parent function and have the public function
                 simply enable the slide counter for the slideshow element.  Incorporating the routing and new page was
                 definitely the easiest part of this assignment.  The way we have our routing structured makes it effortless
-                to add or change pages.            
+                to add or change pages.
+            <h2>Database</h2>
+            <p>
+                I had some database experience previous to this course.  I had completed a Lynda.com tutorial covering
+                SQL using mySQL as the database management system.  From this course I knew about the various SQL commands,
+                primary keys, and using foreign keys.  It has been some time since I did this tutorial, so there is a
+                lot from the course that I do not remember and never had occasion to put into practice.
+            </p>
+            <p>
+                This assignment was a good introduction and review of database concepts with SQL.  In my previous database
+                experience I was writing commands in raw SQL, and I found the switch to MySQL workbench a welcome change.
+                It is more efficient to have the GUI tool for most actions, but be able to write SQL commands if you require
+                anything specific or complicated.  I also really appreciate that MySQL workbench takes care of the transactions
+                for the user.  There was no part of this assignment that was particularly difficult.
+    
+                Click <a target="_blank" href='pics/C_Scott_database.pdf'>here</a> to see my database document.
+            </p>                                        
             `
     
     var element = document.createElement("div");

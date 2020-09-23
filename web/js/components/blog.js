@@ -70,7 +70,7 @@ function blog(){
             <p>
                 This assignment was a good introduction and review of database concepts with SQL.  In my previous database
                 experience I was writing commands in raw SQL, and I found the switch to MySQL workbench a welcome change.
-                It is more efficient to have the GUI tool for most actions, but be able to write SQL commands if you require
+                It is more efficient to have the GUI tool for most actions, and then be able to write SQL commands if you require
                 anything specific or complicated.  I also really appreciate that MySQL workbench takes care of the transactions
                 for the user.  There was no part of this assignment that was particularly difficult.
     

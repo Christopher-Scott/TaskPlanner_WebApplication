@@ -8,11 +8,13 @@ function home(){
 
                         This site will provide a simple list based assignment or task planner.
                         Users can enter a text description, an associated due date, 
-                        and an appropriate icon for their task<br>
+                        and an appropriate icon for their task.
+                    </p>
+                    <p>
                         At a later date tasks will be sortable based upon due date or other parameters.  
                         Entries could even be used for notes, similar to 
                         <a href="https://evernote.com">Evernote</a>.
-
+                    
                     </p>                   
                 </div>
 

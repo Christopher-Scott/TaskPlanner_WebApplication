@@ -32,7 +32,7 @@
                 <div class="dropdown">                    
                     <div class="drop_header">Search</div>
                     <div class="drop_content">
-                        <a href="" class="drop">Users</a>
+                        <a href="#/users" class="drop">Users</a>
                         <a href="" class="drop">Tasks</a>
                         <a href="#/slideshow" class="drop">Slide Show</a>
                     </div>
@@ -63,9 +63,11 @@
         <script src="js/reusable/routeFW.js"></script>
         <script src="js/reusable/MakeSlideShow.js"></script>
         <script src="js/reusable/ajax.js"></script>
+        <script src="js/reusable/MakeTable.js"></script>
         <script src="js/components/home.js"></script>
         <script src="js/components/blog.js"></script>
         <script src="js/components/SlideShows.js"></script>
+        <script src="js/components/Users.js"></script>
         
         <script>
             "use strict";
@@ -81,6 +83,7 @@
             routes["#/home"] = home;
             routes["#/blog"] = blog;
             routes["#/slideshow"] = SlideShows;
+            routes["#/users"] = Users;
             
             // call router framework with parameters object
             routeFW({contentID: "content", startLink: "#/home",  routingTable: routes});

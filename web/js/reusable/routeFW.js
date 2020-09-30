@@ -25,8 +25,8 @@ function routeFW(params) {
         
         // check if the path is bad
         if(!params.routingTable[path]){
-            var errorElem = document.createELement("div");
-            errorElem.innerHTML = "<h2>Error: Could not retrieve content at" + path + "</h2>";
+            var errorElem = document.createElement("div");
+            errorElem.innerHTML = "<h2>Error: Could not retrieve content at " + path + "</h2>";
             inject(errorElem);
         }
         else {

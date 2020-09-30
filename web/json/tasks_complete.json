@@ -1,0 +1,112 @@
+[
+	{
+		"taskId" : 1,
+		"image" : null,
+		"userEmail" : "bob@gmail.com",
+		"taskTitle" : "Walk Fido",
+		"taskDesc" : "Fido needs his walkies",
+		"dueDate" : "2021-01-01",
+		"taskWeight" : 8,
+		"webUserId" : 1,
+		"userRoleId" : 2
+	},
+	{
+		"taskId" : 2,
+		"image" : null,
+		"userEmail" : "alice@yahoo.com",
+		"taskTitle" : "Calc HW",
+		"taskDesc" : null,
+		"dueDate" : "2020-09-20",
+		"taskWeight" : null,
+		"webUserId" : 2,
+		"userRoleId" : 1
+	},
+	{
+		"taskId" : 3,
+		"image" : "pics/icons_128/house_128.png",
+		"userEmail" : "calcifer@aol.com",
+		"taskTitle" : "Take out the Trash",
+		"taskDesc" : null,
+		"dueDate" : null,
+		"taskWeight" : 2,
+		"webUserId" : 3,
+		"userRoleId" : 3
+	},
+	{
+		"taskId" : 4,
+		"image" : "pics/icons_128/food_128.png",
+		"userEmail" : "calcifer@aol.com",
+		"taskTitle" : "Make Dinner",
+		"taskDesc" : null,
+		"dueDate" : null,
+		"taskWeight" : null,
+		"webUserId" : 3,
+		"userRoleId" : 3
+	},
+	{
+		"taskId" : 5,
+		"image" : "pics/icons_128/wrench_128.png",
+		"userEmail" : "calcifer@aol.com",
+		"taskTitle" : "Clean the Gutters",
+		"taskDesc" : null,
+		"dueDate" : null,
+		"taskWeight" : null,
+		"webUserId" : 3,
+		"userRoleId" : 3
+	},
+	{
+		"taskId" : 6,
+		"image" : "pics/icons_128/task_128.png",
+		"userEmail" : "richard@temple.edu",
+		"taskTitle" : "Web Application HW",
+		"taskDesc" : "Complete LA04 Display Data",
+		"dueDate" : "2020-09-17",
+		"taskWeight" : 10,
+		"webUserId" : 5,
+		"userRoleId" : 2
+	},
+	{
+		"taskId" : 7,
+		"image" : "pics/icons_128/mail_128.png",
+		"userEmail" : "richard@temple.edu",
+		"taskTitle" : "Write a letter to Mother",
+		"taskDesc" : null,
+		"dueDate" : null,
+		"taskWeight" : null,
+		"webUserId" : 5,
+		"userRoleId" : 2
+	},
+	{
+		"taskId" : 8,
+		"image" : null,
+		"userEmail" : "bob@gmail.com",
+		"taskTitle" : "Read Pride and Prejudice",
+		"taskDesc" : null,
+		"dueDate" : null,
+		"taskWeight" : null,
+		"webUserId" : 1,
+		"userRoleId" : 2
+	},
+	{
+		"taskId" : 9,
+		"image" : "pics/icons_128/cal_128.png",
+		"userEmail" : "alice@yahoo.com",
+		"taskTitle" : "Phys HW",
+		"taskDesc" : null,
+		"dueDate" : "2020-09-18",
+		"taskWeight" : null,
+		"webUserId" : 2,
+		"userRoleId" : 1
+	},
+	{
+		"taskId" : 10,
+		"image" : null,
+		"userEmail" : "alice@yahoo.com",
+		"taskTitle" : "Calc Quiz",
+		"taskDesc" : null,
+		"dueDate" : "2020-09-21",
+		"taskWeight" : null,
+		"webUserId" : 2,
+		"userRoleId" : 1
+	}
+]

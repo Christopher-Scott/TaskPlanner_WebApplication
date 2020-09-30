@@ -75,7 +75,18 @@ function blog(){
                 for the user.  There was no part of this assignment that was particularly difficult.
     
                 Click <a target="_blank" href='pics/C_Scott_database.pdf'>here</a> to see my database document.
-            </p>                                        
+            </p>
+            <h2>Display Data</h2>
+            <p>
+                I had a more difficult time putting the pieces together for this assignment than any others.  A combination
+                of the involved code for the click-sortable table component and some tricky bugs made for a tougher time.
+                I also complicated the process by not thoroughly reading the instructions and missing the filter input behavior.
+                When I had a completely functional sortable table comoponent I had to change the code to accomodate the filtering.
+                There were some issues to solve with this, mostly due to human errors when refactoring the code.  Creating the table
+                itself was not terribly difficult.  Following the sample code and using the experience gained in the Lab activity
+                certainly made the core table creation functionality easier.
+            </p>
+            
             `
     
     var element = document.createElement("div");

@@ -1,7 +1,6 @@
 /*
  *  This function expects the following properties in a parameter object:
- *      - A list of objects
- *      - the name of a sort order icon (optional)
+ *      - A list of objects      
  *      - class to be applied to the container div
  *      - the property name of the initial sort order
  *      - heading/title for the table (optional)
@@ -12,8 +11,8 @@
 
 function MakeTable(params){
     var objList = params.list;
-    var initialSortProp = params.initialSortProp;
-    var className = params.className || "clickSort";
+    var sortPropName = params.initialSortProp;
+    var className = params.className || "clickSort";    
     
     var div = document.createElement("div");
     div.classList.add(className);
@@ -25,13 +24,25 @@ function MakeTable(params){
         div.appendChild(header);
     }
     
+    // add the filter input
+    var inputTitle = document.createElement("div");
+    inputTitle.innerHTML = "Filter by:";
+    inputTitle.style.display = "inline-block";
+    inputTitle.style.paddingRight = "5px";
+    div.appendChild(inputTitle);
+    var searchInput = document.createElement("input");
+    div.appendChild(searchInput);
+    
     // add the table
     var table = document.createElement("table");
     div.appendChild(table);
-    addTableHead(table, objList, initialSortProp);
-    addTableBody(table, objList, initialSortProp);
+    addTableHead(table, objList, sortPropName);
+    addTableBody(table, objList, searchInput.value, sortPropName);
     
-    // TODO: add icon support
+    searchInput.onkeyup = function(){
+        addTableBody(table, objList, searchInput.value, sortPropName);
+    };
+    
     
     return div;
     
@@ -89,15 +100,16 @@ function MakeTable(params){
         table.appendChild(tableHead);
         
         for (var prop in list[0]){
-            var colHead = addRow("th", tableHead, prettifyColumnHead(prop), alignment(list[0][prop]));
-            colHead.sortPropName = sortOrderPropName;
+            var colHead = addRow("th", tableHead, prettifyColumnHead(prop), list[0][prop]);                            
+            colHead.sortPropName = prop;
         
-            // TODO: Add forward reverse functionality
-//        colHead.sortDir = 0; // 0 is forward, 1 is reverse
         
             // add clicksortable behavior
             colHead.onclick = function(){
-                addTableBody(table, list, this.sortPropName);
+                sortPropName = this.sortPropName;
+//                console.log("Sorting by: " + sortPropName);
+
+                addTableBody(table, list, searchInput.value, sortPropName);
             };
         }
          
@@ -105,11 +117,11 @@ function MakeTable(params){
         
     }
     
-    function addTableBody(table, list, sortOrderPropName){
+    function addTableBody(table, list, filterValue, sortOrderPropName){
         // remove any existing table body
         var old = table.getElementsByTagName("tbody");
         if(old[0]){
-            table.removeChild(oldBody[0]);
+            table.removeChild(old[0]);
         }
         
         // sort the elements
@@ -118,43 +130,48 @@ function MakeTable(params){
         var tableBody = document.createElement("tbody");
         table.appendChild(tableBody);
         
+        
+        // create a row and entry for each datum
         for (var i in list){
-            var row = document.createElement("tr");
-            tableBody.appendChild(row);
-            
-            for( var prop in list[i]){
-                addRow("td", row, list[i][prop], alignment(list[i][prop]));
+            if(isToShow(list[i], filterValue)){
+                var row = document.createElement("tr");
+                tableBody.appendChild(row);
+
+                for( var prop in list[i]){                                   
+                    addRow("td", row, list[i][prop], alignment(list[i][prop]));
+                }
             }
-        }
-        
-        return tableBody;        
-        
+        }    
+        return tableBody;  
     }
+        
+              
+           
     
     function sortByProp(list, prop){
         list.sort(
-                function (a, b){
+                function (a, b){                    
                     var aVal = convert(a[prop]);
                     var bVal = convert(b[prop]);
-                    
+
+                    var c = 0;                    
                     if (aVal > bVal){
-                        return -1;
+                        c = 1;
                     }
                     else if(aVal < bVal){
-                        return 1;
+                        c = -1;
                     }
-                    else{
-                        return 0;
-                    }                    
+                    
+//                    console.log(prop + " " + aVal + " | " + bVal + " result: " + c);
+                    return c;
                 }
                 );
         
         // converts the argument into a comparable value, either string, number, or date
-        function convert(s){
-            if (!s || s.length === 0){
-                return -1;
+        function convert(s){            
+            if(!s || s.length === 0){
+                return "";
             }
-            
             // Date.parse returns number value
             var parsedDate = Date.parse(s);
             if (isNaN(s) && !isNaN(parsedDate)){
@@ -174,9 +191,22 @@ function MakeTable(params){
         }
     }
     
-    
-    
-    
+    // check if the any of the data in the current object matches the filter input
+    function isToShow(obj, input){
+        if(!input || input.length === 0){
+            return true;
+        }
+        for (var prop in obj){            
+            var upperPropVal = obj[prop].toUpperCase();
+            
+            if(upperPropVal.includes(input.toUpperCase())){
+                if(!upperPropVal.includes("<IMG")){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
    
 }
 

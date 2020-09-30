@@ -9,6 +9,7 @@
         <link rel="stylesheet" type="text/css" href="style/styles.css">
         <link rel="stylesheet" type="text/css" href="style/dropdown.css">
         <link rel="stylesheet" type="text/css" href="style/slideshow.css">
+        <link rel="stylesheet" type="text/css" href="style/clicksort.css">
 
     </head>
     <body>
@@ -33,7 +34,7 @@
                     <div class="drop_header">Search</div>
                     <div class="drop_content">
                         <a href="#/users" class="drop">Users</a>
-                        <a href="" class="drop">Tasks</a>
+                        <a href="#/tasks" class="drop">Tasks</a>
                         <a href="#/slideshow" class="drop">Slide Show</a>
                     </div>
                 </div>
@@ -68,6 +69,7 @@
         <script src="js/components/blog.js"></script>
         <script src="js/components/SlideShows.js"></script>
         <script src="js/components/Users.js"></script>
+        <script src="js/components/Tasks.js"></script>
         
         <script>
             "use strict";
@@ -84,6 +86,7 @@
             routes["#/blog"] = blog;
             routes["#/slideshow"] = SlideShows;
             routes["#/users"] = Users;
+            routes["#/tasks"] = Tasks;
             
             // call router framework with parameters object
             routeFW({contentID: "content", startLink: "#/home",  routingTable: routes});

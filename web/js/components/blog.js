@@ -86,6 +86,18 @@ function blog(){
                 itself was not terribly difficult.  Following the sample code and using the experience gained in the Lab activity
                 certainly made the core table creation functionality easier.
             </p>
+            <h2>Tutorial Proposal</h2>
+            <p>
+                My proof of concept for the tutorial proposal presented some unique challenges because I needed to shift away
+                from the w3school's HowTo page in order to achieve the desired result.  I treated this POC as an opportunity not
+                just to test the looks and function of the component, but also test the interactions of using certain element types.
+                For example, the HowTo Calendar page uses an unordered list to represent the days in the month.  I initially
+                constructed my page this way, and then moved to the table format because it will work better
+                when constructing the component programamatically.  Thus my POC had a lot of trial and error as I tested
+                different aspects.  I also had particular difficulty with the CSS code and achieving consistent styling
+                across the unopened, week, and day views.  This should be easier when I make the actual component because
+                I will be able to handle styling in JS using the tree model of HTML rather than selecting classes.
+            </p>
             
             `
     

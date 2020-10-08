@@ -35,6 +35,8 @@
                     <div class="drop_content">
                         <a href="#/users" class="drop">Users</a>
                         <a href="#/tasks" class="drop">Tasks</a>
+                        <a href="#/liveUsers" class="drop">Live Users</a>
+                        <a href="#/liveTasks" class="drop">Live Tasks</a>
                         <a href="#/slideshow" class="drop">Slide Show</a>
                     </div>
                 </div>
@@ -70,16 +72,18 @@
         <script src="js/components/SlideShows.js"></script>
         <script src="js/components/Users.js"></script>
         <script src="js/components/Tasks.js"></script>
-        
+        <script src="js/components/LiveUsers.js"></script>
+        <script src="js/components/LiveTasks.js"></script>
+
         <script>
             "use strict";
-            
+
             // call dropdown functionality with parameters object
-            drop({headerClass: "drop_header", 
-                contentClass: "drop_content", 
+            drop({headerClass: "drop_header",
+                contentClass: "drop_content",
                 visibleClass: "show",
                 hiddenClass: "hide"});
-            
+
             // set up routing table
             var routes = [];
             routes["#/home"] = home;
@@ -87,10 +91,12 @@
             routes["#/slideshow"] = SlideShows;
             routes["#/users"] = Users;
             routes["#/tasks"] = Tasks;
-            
+            routes["#/liveUsers"] = LiveUsers;
+            routes["#/liveTasks"] = LiveTasks;
+
             // call router framework with parameters object
-            routeFW({contentID: "content", startLink: "#/home",  routingTable: routes});
-            
+            routeFW({contentID: "content", startLink: "#/home", routingTable: routes});
+
         </script>
 
     </body>

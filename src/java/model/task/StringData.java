@@ -32,24 +32,6 @@ public class StringData {
     public StringData() {
     }
 
-    // overloaded constructor sets all data members by extracting from resultSet.
-    public StringData(ResultSet results) {
-        try {
-            // plainInteger returns integer converted to string with no commas.
-            this.taskId = FormatUtils.plainInteger(results.getObject("task_id"));
-            this.image = FormatUtils.formatString(results.getObject("image"));
-            this.userEmail = FormatUtils.formatString(results.getObject("user_email"));                        
-            this.taskTitle = FormatUtils.formatString(results.getObject("task_title"));
-            this.taskDesc = FormatUtils.formatString(results.getObject("task_desc"));
-            this.dueDate = FormatUtils.formatDate(results.getObject("due_date"));
-            this.taskWeight = FormatUtils.plainInteger(results.getObject("task_weight"));
-            this.webUserId = FormatUtils.plainInteger(results.getObject("web_user_id"));
-            this.userRoleId = FormatUtils.plainInteger(results.getObject("user_role_id"));
-        } catch (Exception e) {
-            this.errorMsg = "Exception thrown in model.task.StringData (the constructor that takes a ResultSet): " + e.getMessage();
-        }
-    }
-
     public int getCharacterCount() {
         String s = this.taskId + this.taskTitle;
         return s.length();

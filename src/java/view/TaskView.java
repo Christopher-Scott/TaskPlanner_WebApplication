@@ -29,8 +29,23 @@ public class TaskView {
                     + "ORDER BY task_id;"; 
             PreparedStatement stmt = dbc.getConn().prepareStatement(sql);
             ResultSet results = stmt.executeQuery();
+            // Add results from database query to the StringData data "bundle"
             while (results.next()) {
-                sdl.add(results);
+                StringData taskData = new StringData();
+                try {            
+                    taskData.taskId = FormatUtils.plainInteger(results.getObject("task_id"));
+                    taskData.image = FormatUtils.formatString(results.getObject("image"));
+                    taskData.userEmail = FormatUtils.formatString(results.getObject("user_email"));                        
+                    taskData.taskTitle = FormatUtils.formatString(results.getObject("task_title"));
+                    taskData.taskDesc = FormatUtils.formatString(results.getObject("task_desc"));
+                    taskData.dueDate = FormatUtils.formatDate(results.getObject("due_date"));
+                    taskData.taskWeight = FormatUtils.plainInteger(results.getObject("task_weight"));
+                    taskData.webUserId = FormatUtils.plainInteger(results.getObject("web_user_id"));
+                    taskData.userRoleId = FormatUtils.plainInteger(results.getObject("user_role_id"));
+                } catch (Exception e) {
+                    taskData.errorMsg = "Exception thrown in TaskView while adding task data: " + e.getMessage();
+                }
+                sdl.add(taskData);
             }
             results.close();
             stmt.close();

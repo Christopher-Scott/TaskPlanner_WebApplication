@@ -22,8 +22,23 @@ public class WebUserView {
                     "ORDER BY web_user_id ";  // you always want to order by something, not just random order.
             PreparedStatement stmt = dbc.getConn().prepareStatement(sql);
             ResultSet results = stmt.executeQuery();
+            // Add results from database query to the StringData data "bundle"
             while (results.next()) {
-                sdl.add(results);
+                StringData userData = new StringData();
+                try {                                       
+                    userData.webUserId = FormatUtils.plainInteger(results.getObject("web_user_id"));
+                    userData.userEmail = FormatUtils.formatString(results.getObject("user_email"));
+                    userData.userPassword = FormatUtils.formatString(results.getObject("user_password"));
+                    userData.image = FormatUtils.formatString(results.getObject("image"));
+                    userData.birthday = FormatUtils.formatDate(results.getObject("birthday"));
+                    userData.membershipFee = FormatUtils.formatDollar(results.getObject("membership_fee"));
+                    userData.userRoleId = FormatUtils.plainInteger(results.getObject("web_user.user_role_id"));
+                    userData.userRoleType = FormatUtils.formatString(results.getObject("user_role_type"));
+                    sdl.add(userData);
+                } catch (Exception e) {
+                    userData.errorMsg = "Exception thrown in WebUserView while adding user data: " + e.getMessage();
+                }
+                
             }
             results.close();
             stmt.close();

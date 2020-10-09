@@ -30,23 +30,6 @@ public class StringData {
     public StringData() {
     }
 
-    // overloaded constructor sets all data members by extracting from resultSet.
-    public StringData(ResultSet results) {
-        try {
-            // plainInteger returns integer converted to string with no commas.
-            this.webUserId = FormatUtils.plainInteger(results.getObject("web_user_id"));
-            this.userEmail = FormatUtils.formatString(results.getObject("user_email"));
-            this.userPassword = FormatUtils.formatString(results.getObject("user_password"));
-            this.image = FormatUtils.formatString(results.getObject("image"));
-            this.birthday = FormatUtils.formatDate(results.getObject("birthday"));
-            this.membershipFee = FormatUtils.formatDollar(results.getObject("membership_fee"));
-            this.userRoleId = FormatUtils.plainInteger(results.getObject("web_user.user_role_id"));
-            this.userRoleType = FormatUtils.formatString(results.getObject("user_role_type"));
-        } catch (Exception e) {
-            this.errorMsg = "Exception thrown in model.webUser.StringData (the constructor that takes a ResultSet): " + e.getMessage();
-        }
-    }
-
     public int getCharacterCount() {
         String s = this.webUserId + this.userEmail + this.userPassword + this.image + this.birthday
                 + this.membershipFee + this.userRoleId + this.userRoleType;

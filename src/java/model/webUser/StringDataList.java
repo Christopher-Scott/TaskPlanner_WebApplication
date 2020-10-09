@@ -22,10 +22,4 @@ public class StringDataList {
         this.webUserList.add(stringData);
     }
 
-    // Adds creates a StringData element from a ResultSet (from SQL select statement), 
-    // then adds that new element to the array list of StringData elements.
-    public void add(ResultSet results) {
-        StringData sd = new StringData(results);
-        this.webUserList.add(sd);
-    }
 }

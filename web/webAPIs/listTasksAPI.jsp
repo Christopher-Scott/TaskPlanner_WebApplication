@@ -18,6 +18,10 @@
         System.out.println("*** Ready to call allTasksAPI");
         list = TaskView.getAllTasks(dbc);        
     }
+    else{
+        // Did not get good connection, add User Friendly error mesasge
+        list.dbError = "Database Unavailable - please try later or contact the administrator.\nError - " + list.dbError;
+    }
 
       dbc.close(); // EVERY code path that opens a db connection, must also close it - no DB Conn leaks.
 

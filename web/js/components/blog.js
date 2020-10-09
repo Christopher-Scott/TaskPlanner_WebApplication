@@ -98,6 +98,30 @@ function blog(){
                 across the unopened, week, and day views.  This should be easier when I make the actual component because
                 I will be able to handle styling in JS using the tree model of HTML rather than selecting classes.
             </p>
+            <h2>Web API</h2>
+            <p>
+                Creating the listTasksAPI required adding server side code to connect to the database, query the database,
+                creating a list of the queried data objects, and finally delivering the data as a JSON object.  Most of this
+                functionality is encapsulated in TaskView.java.  This code handles the SQL statement, query of the database, and
+                construction of the list.  The basics of connecting and querying a database using Java were not foreign 
+                to me, but this assignment made me much more comfortable with the mechanics of the Connection, Statement, and
+                ResultSet objects.  I was also able to learn a lot about design patterns for server side code using
+                object oriented programming from the sample code for the assignment.  The hardest part of this lab
+                I encountered was a conceptual problem related to error handling.  The question was "How close to the
+                user should Error Messages be handled and displayed?".  For example, if the database is unavailable,
+                should the client side code generate a user friendly error message or should the API generate the
+                message?  Ultimately I decided that the error message should be generated where it can still
+                convey a friendly message that the user will see while also having specificity related to the
+                problem.  Since the database connection is obtained in the API I added the database unavailable
+                error there.
+                <p>
+                Click <a href="HW5_ErrorGeneration.docx">here</a> to see my document of database errors.
+                <br>
+                Click <a href="webAPIs/listUsersAPI.jsp" >here</a> for the Web API that accesses users from the db.
+                <br>
+                Click <a href="webAPIs/listTasksAPI.jsp">here</a> for the Web API that lists tasks.
+                </p>
+            </p>
             
             `
     

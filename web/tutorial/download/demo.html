@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div id="cal"></div>
+        <script src="MakeCalendar.js"></script>
+        <script>
+            var data = [
+                {date: "10/11/2020"},
+                {date: "10/21/2020"},
+                {date: "10/01/2020"}
+            ];
+            var params = {};
+            params.objList = data;
+            var cal = MakeCalendar(params);
+            document.getElementById("cal").appendChild(cal);
+            
+        </script>
+            
+    </body>
+</html>

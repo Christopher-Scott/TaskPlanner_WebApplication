@@ -25,7 +25,7 @@ var account = {};
         
         var passInput = document.createElement("input");
         passInput.id = "passwordInput";
-        passInput.type = "text";
+        passInput.type = "password";
         div.appendChild(passInput);
         
         passLabel.for = "passwordInput";

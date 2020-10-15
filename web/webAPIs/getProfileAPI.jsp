@@ -3,7 +3,10 @@
 <%@page language="java" import="com.google.gson.*" %>
 
 <%
-  StringData loggedOnUser = (StringData)session.getAttribute("loggedOnUser");
+    StringData loggedOnUser = null;
+  if(session.getAttribute("loggedOnUser") != null){
+     loggedOnUser = (StringData)session.getAttribute("loggedOnUser");
+  }
   if(loggedOnUser == null){
       loggedOnUser = new StringData();
       loggedOnUser.errorMsg = "No user logged on";

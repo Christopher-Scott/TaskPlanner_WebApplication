@@ -10,6 +10,7 @@
         <link rel="stylesheet" type="text/css" href="style/dropdown.css">
         <link rel="stylesheet" type="text/css" href="style/slideshow.css">
         <link rel="stylesheet" type="text/css" href="style/clicksort.css">
+        <link rel="stylesheet" type="text/css" href="style/logon.css">
 
     </head>
     <body>
@@ -25,9 +26,9 @@
                     <div class="drop_header">Account</div>
                     <div class="drop_content">
                         <a href="" class="drop">Register</a>
-                        <a href="" class="drop">Log In</a>
-                        <a href="" class="drop">Profile</a>
-                        <a href="" class="drop">Log Out</a>
+                        <a href="#/logOn" class="drop">Log In</a>
+                        <a href="#/profile" class="drop">Profile</a>
+                        <a href="#/logOff" class="drop">Log Out</a>
                     </div>
                 </div>
                 <div class="dropdown">                    
@@ -74,6 +75,7 @@
         <script src="js/components/Tasks.js"></script>
         <script src="js/components/LiveUsers.js"></script>
         <script src="js/components/LiveTasks.js"></script>
+        <script src="js/components/account.js"></script>
 
         <script>
             "use strict";
@@ -93,6 +95,9 @@
             routes["#/tasks"] = Tasks;
             routes["#/liveUsers"] = LiveUsers;
             routes["#/liveTasks"] = LiveTasks;
+            routes["#/logOn"] = account.logon;
+            routes["#/logOff"] = account.logoff;
+            routes["#/profile"] = account.getProfile;
 
             // call router framework with parameters object
             routeFW({contentID: "content", startLink: "#/home", routingTable: routes});

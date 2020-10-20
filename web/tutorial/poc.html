@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>CalendarView | Proof of Concept</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" type="text/css" href="../style/calendar.css">
+    </head>
+    <body>
+        <div id="calendar1" class="Calendar">
+            <h2>August</h2>            
+            <div class="content">
+            <div class="col66">    
+                <table>
+                    <thead>
+                    <tr> 
+                        <th class="control"></th>
+                        <th>Su</th>
+                        <th>M</th>
+                        <th>Tu</th>
+                        <th>W</th>
+                        <th>Th</th>
+                        <th>F</th>
+                        <th>Sa</th>                
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="accordian control"></td>                        
+                        <td>1<div>Some Content 1</div></td>
+                        <td>2<div>Some Content 2</div></td>
+                        <td>3<div>Some Content 3</div></td>
+                        <td>4<div>Some Content 4</div></td>
+                        <td>5<div>Some Content 5</div></td>
+                        <td>6<div>Some Content 6</div></td>
+                        <td>7<div>Some Content 7</div></td>                
+                    </tr>
+                    <tr>
+                        <td class="accordian control"></td>
+                        <td>8<div>Some Content 8</div></td>
+                        <td>9<div>Some Content 9</div></td>
+                        <td>10<div>Some Content 10</div></td>
+                        <td>11<div>Some Content 11</div></td>
+                        <td>12<div>Some Content 12</div></td>
+                        <td>13<div>Some Content 13</div></td>
+                        <td>14<div>Some Content 14</div></td>                
+                    </tr>
+                    <tr>
+                        <td class="accordian control"></td>
+                        <td>15<div>Some Content 15</div></td>
+                        <td>16<div>Some Content 16</div></td>
+                        <td>17<div>Some Content 17</div></td>
+                        <td>18<div>Some Content 18</div></td>
+                        <td>19<div>Some Content 19</div></td>
+                        <td>20<div>Some Content 20</div></td>
+                        <td>21<div>Some Content 21</div></td>                
+                    </tr>
+                    <tr>
+                        <td class="accordian control"></td>
+                        <td>22<div>Some Content 22</div></td>
+                        <td>23<div>Some Content 23</div></td>
+                        <td>24<div>Some Content 24</div></td>
+                        <td>25<div>Some Content 25</div></td>
+                        <td>26<div>Some Content 26</div></td>
+                        <td>27<div>Some Content 27</div></td>
+                        <td>28<div>Some Content 28</div></td>                
+                    </tr>
+                    <tr>
+                        <td class="accordian control"></td>
+                        <td>29<div>Some Content 29</div></td>
+                        <td>30<div>Some Content 30</div></td>
+                        <td>31<div>Some Content 31</div></td>                                    
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="spotlight"></div>
+            </div>
+        </div>
+    <script>
+        var acc = document.getElementsByClassName("accordian");
+        var calendar = document.getElementById("calendar1");
+        var spotlight = calendar.getElementsByClassName("spotlight")[0];
+        var table = calendar.getElementsByTagName("table")[0];
+        var selected = null;        
+        
+        
+        var clickables = calendar.getElementsByTagName("td");
+        for(var i = 0; i < clickables.length; i++){
+            clickables[i].onclick = changeView;
+        }
+        
+        function changeView(){
+            // Expand the week view
+            if(this.classList.contains("control")){
+                if(!table.classList.contains("weekView")) table.classList.add("weekView");                
+                if(table.classList.contains("dayView")) table.classList.remove("dayView");
+                
+                if(this.classList.contains("active")) {
+                    this.classList.remove("active");
+                }
+                else{
+                    this.classList.add("active");
+                }                
+               
+               if(selected) {
+                   if(selected.classList.contains("selected")){
+                       selected.classList.remove("selected");
+                   }
+               }
+               // reset the spotlight
+               if (spotlight.style.display === "block"){
+                        spotlight.style.display = "none";
+               }
+                              
+               var showList = this.parentElement.getElementsByTagName("div");
+               for(var i = 0; i < showList.length; i++){
+                   var content = showList[i];
+                    if (content.style.display === "block"){
+                        content.style.display = "none";
+                    }
+                    else{
+                        content.style.display = "block";                        
+                    }                    
+               }
+            }
+            // add the day's content to the spotlight
+            else{
+                if(table.classList.contains("weekView")) table.classList.remove("weekView");                
+                if(!table.classList.contains("dayView")) table.classList.add("dayView");
+                
+                if(this.classList.contains("selected")){
+                   spotlight.style.display = "none";
+                   this.classList.remove("selected");
+                }
+                else{
+                    this.classList.add("selected");                        
+                    spotlight.style.display = "block";                        
+                }
+
+               // childNodes[1] is the div element               
+               spotlight.innerHTML = this.childNodes[1].innerHTML;
+               if(selected) {
+                   if(selected.classList.contains("selected")){
+                       selected.classList.remove("selected");
+                   }
+               }
+               // hide any of the open week views
+               var hideList = table.getElementsByTagName("div");
+               for(var i = 0; i < hideList.length; i++){
+                   var content = hideList[i];
+                   if (content.style.display === "block"){
+                        content.style.display = "none";
+                    }
+                }
+                // reset the week expansion elements                
+                for(var i = 0; i < clickables.length; i++){
+                    if(clickables[i].classList.contains("active")){
+//                    console.log(openWeeks[i]);
+                        clickables[i].classList.remove("active");
+                    }
+                }
+                selected = this;
+            }
+        }
+        
+    
+                    
+    </script>
+    </body>
+    
+</html>

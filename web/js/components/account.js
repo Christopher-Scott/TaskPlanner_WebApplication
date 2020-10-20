@@ -34,54 +34,33 @@ var account = {};
         logOnButton.innerHTML = "Log On";
         div.appendChild(logOnButton);
         
+                                   
+        var profile = document.createElement("div");
+        profile.classList.add("profile");
+        container.append(profile);
+        
         var err = document.createElement("div");
         err.style.textAlign = "center";
-        container.append(err);
-             
-        
-//        console.log("building logon");
-//        var div = document.createElement("div");
-//        div.classList.add("logon");
-//               
-//        
-//        var emailText = document.createElement("span");
-//        emailText.innerHTML = "Email: ";
-//        div.appendChild(emailText);
-//        
-//        var emailInput = document.createElement("input");
-//        div.appendChild(emailInput);
-//        
-//        div.appendChild(document.createElement("br"));
-//        
-//        var passText = document.createElement("span");
-//        passText.innerHTML = "Password: ";
-//        div.appendChild(passText);
-//        
-//        var passInput = document.createElement("input");
-//        div.appendChild(passInput);
-//        
-//        var logOnButton = document.createElement("button");
-//        logOnButton.innerHTML = "Log On";        
-//        div.appendChild(logOnButton);
-//        
-//        var err = document.createElement("span");
-//        div.append(err);
+        container.append(err); 
         
         logOnButton.onclick = function() {
-            if(emailInput.value.length === 0 ||  passInput.value.length === 0){
+            // client side validation that the user is trying to log on with text in the email input
+            if(emailInput.value.length === 0){
                 
-                err.innerHTML = "Could not complete log on request";
+                err.innerHTML = "Could not complete log on request - please try again";
                 err.style.color = "#aa2222";                
                 
             }
             else{
-                var url = "webAPIs/logonAPI.jsp?email=" + escape(emailInput.value)
-                    + "&password=" + escape(passInput.value);
+                var url = "webAPIs/logonAPI.jsp?email=" + encodeURIComponent(emailInput.value)
+                    + "&password=" + encodeURIComponent(passInput.value);
             
 //              console.log("Initiating ajax call to: " + url);
-                ajax(url, function(obj) {container.innerHTML = buildProfile(obj);}, div);
-                err.innerHTML = "";
-                container.classList.add("profile");                
+                ajax(url, function(obj) {                    
+                    profile.innerHTML = buildProfile(obj);                   
+                }
+                    ,err);
+                err.innerHTML = "";                                
             }
             
         };
@@ -111,14 +90,16 @@ var account = {};
         
         return div;
     };
-    
+            
     function buildProfile(obj){
         var profile = "";
         if(obj.errorMsg.length > 0){
             profile += "<strong>Error: " + obj.errorMsg + "</strong>";
         }
         else{
-            profile += "<img src ='" + obj.image + "'>";            
+            if(obj.image.length > 0){
+                profile += "<img src ='" + obj.image + "'>";
+            }
             profile += "<p><strong>Welcome User " + obj.webUserId + "</strong>";           
             profile += "<br/> Birthday: " + obj.birthday;
             profile += "<br/> Membership Fee: " + obj.membershipFee;
@@ -129,6 +110,6 @@ var account = {};
         
     }
     
-}());
+}()); // IIFE
 
 

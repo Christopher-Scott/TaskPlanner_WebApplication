@@ -3,7 +3,8 @@
 <%@page language="java" import="com.google.gson.*" %>
 
 <%
-    StringData loggedOnUser = null;
+  StringData loggedOnUser = null;
+  // must check if session attrbute is null before trying to cast it
   if(session.getAttribute("loggedOnUser") != null){
      loggedOnUser = (StringData)session.getAttribute("loggedOnUser");
   }

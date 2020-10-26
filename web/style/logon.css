@@ -1,0 +1,70 @@
+.logon {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: auto auto auto;
+    grid-gap: 7px;
+        
+    margin: auto;
+    width: 70%;
+    
+
+    
+}
+
+
+.logon label{
+    grid-column: 1;
+    text-align: left;
+   
+}
+
+.logon input{ 
+    grid-column: 2;    
+    
+}
+
+.logon button{
+    grid-column:  2;        
+    padding: 4px 20px;    
+    margin: 0% 15% 5% 15%;       
+}
+
+.profile{
+    display: flex;    
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+}
+.profile img{    
+    max-width: 100%;    
+        
+}
+
+.profile p{
+    text-align: left;
+    display: block;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 30px;
+    padding-right: 20px;
+   
+}
+
+.logoff {
+    text-align: center;
+    padding: 20px;
+}
+
+
+
+@media only screen and (min-width: 800px) {
+    .logon{
+        width: 40%;
+    }
+    
+    .profile{        
+        flex-direction: row;
+        justify-content: center;
+                
+    }
+}

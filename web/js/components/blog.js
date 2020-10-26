@@ -122,6 +122,27 @@ function blog(){
                 Click <a href="webAPIs/listTasksAPI.jsp">here</a> for the Web API that lists tasks.
                 </p>
             </p>
+            <h2>Log On</h2>
+            <p>
+                Most of my difficulties with this assignment came when constructing the log on user interface.  
+                Creating the APIs was simple after our discussion in class about the request and session
+                implicit objects.  But my experience with the log on UI was different.  I think it was my lack
+                of experience, but it took a lot of trial and error to get right.  Ultimately, I solved my issues
+                by using a CSS grid layout and placing the labels and input fields in different columns.  I also
+                ran into an issue with my user that had all nullable fields set to null in the user table.  With my
+                original solution when trying to log in as this user the error "User not found" was thrown in
+                DbMods.finduser().
+                It was necessary to use a different select statement that checked if the password column was null
+                instead of matching the password.  This enabled the user to still log in, but also verified correctly
+                any user that had a password set.
+                
+                <ul>                    
+                    <li><a target="_blank" href="webAPIs/logonAPI.jsp?email=bob@gmail.com&password=123456">Successful Log on</a></li>        
+                    <li><a target="_blank" href="webAPIs/getProfileAPI.jsp">Get profile</a></li>        
+                    <li><a target="_blank" href="webAPIs/logoffAPI.jsp">Log Off</a></li>
+                    <li><a target="_blank" href="webAPIs/listUsersAPI.jsp">List all users</a></li>
+                </ul>
+            </p>
             
             `
     

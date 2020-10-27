@@ -5,19 +5,81 @@
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="calendarStyle.css"> 
     </head>
     <body>
         <div id="cal"></div>
-        <script src="MakeCalendar.js"></script>
-        <script>
-            var data = [
-                {date: "10/11/2020"},
-                {date: "10/21/2020"},
-                {date: "10/01/2020"}
-            ];
+        <script src="MakeCalendar.js"></script>        
+        <script>                       
+            var data =[
+            {
+                    "taskId" : 1,
+                    "image" : "",
+                    "userEmail" : "bob@gmail.com",
+                    "taskTitle" : "Walk Fido",
+                    "taskDesc" : "Fido needs his walkies",
+                    "dueDate" : "2020-10-01",
+                    "taskWeight" : 8,
+                    "webUserId" : 1,
+                    "userRoleId" : 2
+            },
+            {
+                    "taskId" : 2,
+                    "image" : "",
+                    "userEmail" : "alice@yahoo.com",
+                    "taskTitle" : "Calc HW",
+                    "taskDesc" : "",
+                    "dueDate" : "2020-10-20",
+                    "taskWeight" : "",
+                    "webUserId" : 2,
+                    "userRoleId" : 1
+            },			
+            {
+                    "taskId" : 6,
+                    "image" : "pics/icons_128/task_128.png",
+                    "userEmail" : "richard@temple.edu",
+                    "taskTitle" : "Web Application HW",
+                    "taskDesc" : "Complete LA04 Display Data",
+                    "dueDate" : "2020-10-17",
+                    "taskWeight" : 10,
+                    "webUserId" : 5,
+                    "userRoleId" : 2
+            },		
+            {
+                    "taskId" : 9,
+                    "image" : "pics/icons_128/cal_128.png",
+                    "userEmail" : "alice@yahoo.com",
+                    "taskTitle" : "Phys HW",
+                    "taskDesc" : "",
+                    "dueDate" : "2020-11-18",
+                    "taskWeight" : "",
+                    "webUserId" : 2,
+                    "userRoleId" : 1
+            },
+            {
+                    "taskId" : 10,
+                    "image" : "",
+                    "userEmail" : "alice@yahoo.com",
+                    "taskTitle" : "Calc Quiz",
+                    "taskDesc" : "",
+                    "dueDate" : "2020-10-21",
+                    "taskWeight" : "",
+                    "webUserId" : 2,
+                    "userRoleId" : 1
+            }
+            ];           
+//            var data = [
+//                {date: "10/11/2020", data: "Some text", detail: "details"},
+//                {date: "10/21/2020", data: "some other text", detail: "details"},
+//                {date: "10/01/2020", data: "again, text"}
+//            ];
             var params = {};
             params.objList = data;
+            params.datePropName = "dueDate";
+            params.datumPropName = "taskTitle";
+            params.detailPropName = "taskDesc";
             var cal = MakeCalendar(params);
+            cal.enableMonthButtons();
             document.getElementById("cal").appendChild(cal);
             
         </script>

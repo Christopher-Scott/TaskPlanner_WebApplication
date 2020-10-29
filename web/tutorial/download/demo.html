@@ -18,7 +18,8 @@
                     "userEmail" : "bob@gmail.com",
                     "taskTitle" : "Walk Fido",
                     "taskDesc" : "Fido needs his walkies",
-                    "dueDate" : "2020-10-01",
+//                    "dueDate" : "2020-10-01",
+                    "dueDate" : "10/01/2020",
                     "taskWeight" : 8,
                     "webUserId" : 1,
                     "userRoleId" : 2
@@ -29,7 +30,8 @@
                     "userEmail" : "alice@yahoo.com",
                     "taskTitle" : "Calc HW",
                     "taskDesc" : "",
-                    "dueDate" : "2020-10-20",
+//                    "dueDate" : "2020-10-20",
+                    "dueDate" : "10/20/2020",
                     "taskWeight" : "",
                     "webUserId" : 2,
                     "userRoleId" : 1
@@ -40,7 +42,8 @@
                     "userEmail" : "richard@temple.edu",
                     "taskTitle" : "Web Application HW",
                     "taskDesc" : "Complete LA04 Display Data",
-                    "dueDate" : "2020-10-17",
+//                    "dueDate" : "2020-10-17",
+                    "dueDate" : "10/17/2020",
                     "taskWeight" : 10,
                     "webUserId" : 5,
                     "userRoleId" : 2
@@ -51,7 +54,8 @@
                     "userEmail" : "alice@yahoo.com",
                     "taskTitle" : "Phys HW",
                     "taskDesc" : "",
-                    "dueDate" : "2020-11-18",
+//                    "dueDate" : "2020-11-18",
+                    "dueDate" : "11/18/2020",
                     "taskWeight" : "",
                     "webUserId" : 2,
                     "userRoleId" : 1
@@ -62,24 +66,35 @@
                     "userEmail" : "alice@yahoo.com",
                     "taskTitle" : "Calc Quiz",
                     "taskDesc" : "",
-                    "dueDate" : "2020-10-21",
+//                    "dueDate" : "2020-10-21",
+                    "dueDate" : "10/21/2020",
                     "taskWeight" : "",
                     "webUserId" : 2,
                     "userRoleId" : 1
             }
             ];           
-//            var data = [
-//                {date: "10/11/2020", data: "Some text", detail: "details"},
-//                {date: "10/21/2020", data: "some other text", detail: "details"},
-//                {date: "10/01/2020", data: "again, text"}
-//            ];
+            var data2 = [
+                {date: "10/11/2020", data: "Some text", detail: "details"},
+                {date: "10/21/2020", data: "some other text", detail: "details"},
+                {date: "10/01/2020", data: "again, text"}
+            ];
             var params = {};
             params.objList = data;
             params.datePropName = "dueDate";
             params.datumPropName = "taskTitle";
             params.detailPropName = "taskDesc";
+//            params.bgColor = "aliceblue";
             var cal = MakeCalendar(params);
             cal.enableMonthButtons();
+            document.getElementById("cal").appendChild(cal);
+            
+            var params = {};
+            params.objList = data2;
+            params.datePropName = "date";
+            params.datumPropName = "data";
+            params.detailPropName = "detail";
+//            params.bgColor = "aliceblue";
+            cal = MakeCalendar(params);            
             document.getElementById("cal").appendChild(cal);
             
         </script>

@@ -2,14 +2,19 @@
  * Properties of param object:
  *   objList - a list of the data objects to insert into the calendar
  *   datePropName - A string of the date property name in objList
+ *      Date must be in mm/dd/yyyy format
  *   datumPropName - A string of the data property name in objList
  *   detailPropName - A string of the details property name in objList
  *   
  *   className - an HTML class name to be associated with the returned component
+ *   activeClass - an HTML class name to be associated with active elements in the component
  * 
  */
 function MakeCalendar(params){
     var calClassName = params.className || "Calendar";
+    var activeClass = params.activeClass || "active";
+    var highlightClass = params.hightlightClass || "highlight";
+    
     var dateProp = params.datePropName;
     var dataProp = params.datumPropName;
     var detailProp = params.detailPropName;
@@ -25,11 +30,7 @@ function MakeCalendar(params){
    
     var cal = genCalendar(month, year, calendarComponent);
     var spotlightElem; // current highlighted element
-//    div.appendChild(cal.table);
-//    div.appendChild(cal.spotlight);
-    
-//     var header = document.createElement("h2");    
-    
+
     var list = params.objList;
     addData();
     
@@ -38,6 +39,8 @@ function MakeCalendar(params){
         var prev = document.createElement("button");
         var next = document.createElement("button");
         
+        prev.innerHTML = "&larr;"
+        next.innerHTML = "&rarr;";
         prev.onclick = prevMonth;
         next.onclick = nextMonth;
         
@@ -83,6 +86,7 @@ function MakeCalendar(params){
         var numCells = daysInMonth(month + 1, year);
         
         var body = document.createElement("tbody");
+        calObj.body = body;
         calObj.table.appendChild(body);
         var row;
         var day;
@@ -93,17 +97,20 @@ function MakeCalendar(params){
                 row = document.createElement("tr");
                 body.appendChild(row);
                 weekButton = document.createElement("button");
+                weekButton.innerHTML = "+";
                 weekButton.onclick = expandWeek;
                 row.appendChild(weekButton);
             }
             
-            day = document.createElement("td");
-            day.onclick = spotlight;
+            day = document.createElement("td");            
             row.appendChild(day);
             
             if(i >= dummyCells){
+                day.onclick = spotlight; // only add click function to days in month
+                day.onkeyup = spotlight;
                 day.innerHTML = i - dummyCells + 1;
-                calObj.dayArray.push(day);                
+                calObj.dayArray.push(day);
+                day.tabIndex = 0; // Make element focusable
             }
         }        
         container.appendChild(calObj.title);
@@ -122,26 +129,25 @@ function MakeCalendar(params){
     function expandWeek(){
         hide(cal.spotlight);
         highlight();
+        this.innerHTML = (this.innerHTML === "+") ? "-":"+";
         var row = this.parentElement;
-//        var tdElems = row.getElementsByTagName("td");        
-        var data = row.getElementsByTagName("div");
+        var data = row.getElementsByTagName("p");
         
-//        for(var i = 0; i < tdElems.length; i++){
-//            tdElems[i].style.height = "80px";
-//        }
         for(var i = 0; i < data.length; i++){
             show(data[i]);
+            
         }
     }
     function collapseWeek(){
-        var data = cal.table.getElementsByTagName("div");
-//        var tdElems = cal.table.getElementsByTagName("td");
+        var buttons = cal.body.getElementsByTagName("button");
+        for(var i = 0; i < buttons.length; i++){
+            buttons[i].innerHTML = (this.innerHTML === "+") ? "-":"+";
+        }
+//        var data = cal.body.getElementsByTagName("div");
+        var data = cal.body.getElementsByTagName("p");
         for(var i = 0; i < data.length; i++){
             hide(data[i]);
         }
-//        for(var i = 0; i < tdElems.length; i++){
-//            tdElems[i].style.height = "40px";
-//        }
     }
     
     /*
@@ -151,12 +157,22 @@ function MakeCalendar(params){
         collapseWeek();
         cal.spotlight.innerHTML = "";
         hide(cal.spotlight);
-        show(cal.spotlight);        
+        show(cal.spotlight);
         
+//        console.log(e.target.tagName);
+        // Handle clicked child div
+        var elem;
+        if(e.target.tagName === "P"){
+            elem = e.target.parentElement;
+        }
+        else{
+            elem = e.target;
+        }
+//        console.log(elem);
        
        
-       highlight(e.target);
-       var index = e.target.innerText; // index is the day of the month
+       highlight(elem);
+       var index = elem.innerText; // index is the day of the month
        var date = new Date(year, month, index);
 //       console.log(date);
        
@@ -167,8 +183,7 @@ function MakeCalendar(params){
         var obj;
         for(var i = 0; i < list.length; i++){
             obj = list[i];
-//            var other_date =  new Date(obj[dateProp]);
-            var other_date = dateFromString(obj[dateProp]);
+            var other_date =  new Date(obj[dateProp]);
             if(other_date.getDate() === date.getDate() && other_date.getMonth() === date.getMonth()){
 //                console.log(other_date);
 //                console.log(date);
@@ -180,11 +195,11 @@ function MakeCalendar(params){
                 break;
             }
         }
-        spotlightElem = e.target;
+        spotlightElem = elem;
     }
     
     function nextMonth(){        
-        if (month === 11){
+        if (month === 1){
             month = 0;
             year++;
         }
@@ -207,63 +222,64 @@ function MakeCalendar(params){
     }
     
     function addData(){
-//        console.log(cal.dayArray);
         var obj;
         // loop through all of the objects and attach the data to days in the
         // current month
         for(var i = 0; i < list.length; i++){
             obj = list[i];
-            var datumElem = document.createElement("div");
-    //        console.log(obj);
-    //        var date = new Date(obj[dateProp]);
-            var date = dateFromString(obj[dateProp]);
-    //        console.log(date);
-    //        console.log(month);
-            if(date.getMonth() === month){
-    //            console.log(date.getDate());
+            var datumElem = document.createElement("p");            
+            var date = new Date(obj[dateProp]);
+            if(date.getMonth() === month){    
                 var dayElem = cal.dayArray[date.getDate() - 1];                                                  
 
                 // Add the content to the day element
                 datumElem.innerHTML = obj[dataProp];
-                hide(datumElem);
-
+                datumElem.onClick = spotlight;
+                hide(datumElem);                
+                
                 dayElem.appendChild(datumElem);
+                
+                
+                
 
             }        
         }
     }
         
     
-    function show(elem){
-        if(elem.style.display === "none"){
-            elem.style.display = "block";
+    function show(elem){   
+        if(elem.style.visibility === "hidden"){
+            elem.style.visibility = "visible";
+            elem.classList.add(activeClass);
         }
         else{
-            elem.style.display = "none";
+            elem.style.visibility = "hidden";
+            if(elem.classList.contains(activeClass)){
+                elem.classList.remove(activeClass);
+            }
         }
     }
     
-    function hide(elem){
-        elem.style.display = "none";
+    function hide(elem){       
+        elem.style.visibility = "hidden";
+        if(elem.classList.contains(activeClass)){
+                elem.classList.remove(activeClass);
+        }
     }
     
     //  Adds a highlight background color to argument elem
     // or clears the existing highlight if elem is null;
-    function highlight(elem){        
+    function highlight(elem){
         if(spotlightElem){
-            //TODO: Change this to a param
-            spotlightElem.style.backgroundColor = "#FFF";
+            if(spotlightElem.classList.contains(highlightClass)){
+                spotlightElem.classList.remove(highlightClass);
+            }
         }
         if(elem){
-            elem.style.backgroundColor = "#bbb";
+            elem.classList.add(highlightClass);
         }
     }
     
-//    TODO: This is a hacky solution for dates
-    function dateFromString(dateStr){
-        var t = dateStr.split("-", 3);
-        return new Date(Date.UTC(t[0], t[1] - 1, t[2], 4, 0, 0));
-    }
 }
 
 

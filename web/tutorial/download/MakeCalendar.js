@@ -1,13 +1,16 @@
 /* Create a calendar component based on the provided parameters
- * Properties of param object:
- *   objList - a list of the data objects to insert into the calendar
- *   datePropName - A string of the date property name in objList
- *      Date must be in mm/dd/yyyy format
- *   datumPropName - A string of the data property name in objList
- *   detailPropName - A string of the details property name in objList
+ * 
+ *   @param {array} objList - a list of the data objects to insert into the calendar
+ *   @param {string} datePropName - the date property name for objects in objList. Date must be in mm/dd/yyyy format
+ *   @param {string} datumPropName - the data property name for objects in objList
+ *   @param {string} detailPropName - the details property name for objects in objList
+ *   @param {string} imgPropName - Optional. Property name of an image URL for objects in objList
  *   
- *   className - an HTML class name to be associated with the returned component
- *   activeClass - an HTML class name to be associated with active elements in the component
+ *   @param {function} formatSpotlight - Optional function to be called when formatting data added to spotlight  
+ *   
+ *   @param {string} className - an HTML class name to be associated with the returned component
+ *   @param {string} activeClass - an HTML class name to be associated with active elements in the component
+ *   @param {string} highlightClass - an HTML class name to be associated with highlighted elements in the component
  * 
  */
 function MakeCalendar(params){
@@ -18,6 +21,7 @@ function MakeCalendar(params){
     var dateProp = params.datePropName;
     var dataProp = params.datumPropName;
     var detailProp = params.detailPropName;
+    var imgProp = params.imgPropName || "";
     
     var calendarComponent = document.createElement("div");        
     calendarComponent.classList.add(calClassName);
@@ -25,7 +29,7 @@ function MakeCalendar(params){
     var dateObj = new Date();
     var month = dateObj.getMonth();
     var year = dateObj.getFullYear();
-    var monthName = dateObj.toLocaleString("default", {month: "long"});
+//    var monthName = dateObj.toLocaleString("default", {month: "long"});
     
    
     var cal = genCalendar(month, year, calendarComponent);
@@ -39,22 +43,51 @@ function MakeCalendar(params){
         var prev = document.createElement("button");
         var next = document.createElement("button");
         
-        prev.innerHTML = "&larr;"
+        prev.innerHTML = "&larr;";
         next.innerHTML = "&rarr;";
         prev.onclick = prevMonth;
         next.onclick = nextMonth;
         
-        var child = cal.title.childNodes[0];        
+        var child = cal.title.getElementsByTagName("h2")[0];        
         cal.title.insertBefore(prev, child);
         child.after(next);
     };
+    
+    // public function
+    /* Default function for formatting the spotlight data.
+     * Can be set by HTML coder to create a different view of the data
+     * 
+     * @param {type} obj
+     * @returns {String} formatted
+     */
+    calendarComponent.formatSpotlight = params.formatSpotlight || function(obj){
+        var output = "";
+            if(obj){
+                if(imgProp){
+                    if(obj[imgProp]){
+                        output += "<img src=" + obj[imgProp] + "><br>";                                        
+                    }
+                }
+            
+                output += "<strong>" + obj[dataProp] + "</strong>" +"<br>";
+                if(obj[detailProp]){
+                    output += obj[detailProp] + "<br>";
+                }
+            }
+            else{
+                output = "Error: Could not format data for " + obj; 
+            }
+        return output;
+        };
                     
     return calendarComponent;
     
-    /* Create a table format calendar
-    * month - the calendar month to create
-    * year - the corresponging year (necessary to determine days of week)
-    */
+    /* Create a table format calendar     
+     * @param {number} month - the calendar month to create
+     * @param {number} year - the corresponging year (necessary to determine days of week)
+     * @param {element} container
+     * @returns {element} calendar Object
+     */    
     function genCalendar(month, year, container){
         var calObj = {};
         calObj.dayArray = [];
@@ -67,11 +100,12 @@ function MakeCalendar(params){
         var dayLabels = ["S", "M", "T", "W", "T", "F", "S"];        
         var tmp = new Date(year, month);
         var titleMonth = document.createElement("h2");
+        var titleYear = document.createElement("h4");
         titleMonth.innerHTML = tmp.toLocaleString('default', {month: 'long'});
+        titleYear.innerHTML = tmp.toLocaleString('default', {year: 'numeric'});
+        calObj.title.appendChild(titleYear);
         calObj.title.appendChild(titleMonth);
         
-//        calObj.table.appendChild(calObj.month);
-//        
         // add dummy first head element        
         var head = document.createElement("th");
         calObj.header.appendChild(head);
@@ -121,7 +155,12 @@ function MakeCalendar(params){
         return calObj;
     }
     
-    // month is the numerical value of the month ie 1 for Jan, 2 for Feb;
+    /* returns the number of days for specified month, year     
+     *  
+     * @param {number} month
+     * @param {number} year
+     * @returns {number} Number of days in month
+     */
     function daysInMonth(month, year){
         return new Date(year, month, 0).getDate();
     }
@@ -143,16 +182,16 @@ function MakeCalendar(params){
         for(var i = 0; i < buttons.length; i++){
             buttons[i].innerHTML = (this.innerHTML === "+") ? "-":"+";
         }
-//        var data = cal.body.getElementsByTagName("div");
         var data = cal.body.getElementsByTagName("p");
         for(var i = 0; i < data.length; i++){
             hide(data[i]);
         }
     }
     
-    /*
-     * Highlights the information for a clicked day
-     */
+    /* Highlights the information for a clicked day
+     * 
+     * @param {element} e     * 
+     */     
     function spotlight(e){
         collapseWeek();
         cal.spotlight.innerHTML = "";
@@ -169,32 +208,16 @@ function MakeCalendar(params){
             elem = e.target;
         }
 //        console.log(elem);
-       
-       
-       highlight(elem);
-       var index = elem.innerText; // index is the day of the month
-       var date = new Date(year, month, index);
-//       console.log(date);
-       
+
+        highlight(elem);
+        var day = elem.innerText;
+        var date = new Date(year, month, day);
         var head = document.createElement("h3");
         head.innerHTML = date.toDateString();
         cal.spotlight.appendChild(head);
         
-        var obj;
-        for(var i = 0; i < list.length; i++){
-            obj = list[i];
-            var other_date =  new Date(obj[dateProp]);
-            if(other_date.getDate() === date.getDate() && other_date.getMonth() === date.getMonth()){
-//                console.log(other_date);
-//                console.log(date);
-                cal.spotlight.innerHTML += obj[dataProp];
-                if(obj[detailProp]){
-                    cal.spotlight.innerHTML += "<br>";
-                    cal.spotlight.innerHTML += obj[detailProp];
-                }
-                break;
-            }
-        }
+        cal.spotlight.innerHTML += addSpotlightData(date);
+                
         spotlightElem = elem;
     }
     
@@ -238,13 +261,25 @@ function MakeCalendar(params){
                 hide(datumElem);                
                 
                 dayElem.appendChild(datumElem);
-                
-                
-                
-
             }        
         }
     }
+    
+    /* Search the objList for data matching the provided date.     
+     * Format and add it to the output
+     */    
+    function addSpotlightData(date){
+        var obj;
+        var output = "";
+        for(var i = 0; i < list.length; i++){
+            obj = list[i];
+            var other_date =  new Date(obj[dateProp]);
+            if(other_date.getDate() === date.getDate() && other_date.getMonth() === date.getMonth()){
+                output += calendarComponent.formatSpotlight(obj);                
+            }
+        }
+        return output;
+    }        
         
     
     function show(elem){   
@@ -267,8 +302,7 @@ function MakeCalendar(params){
         }
     }
     
-    //  Adds a highlight background color to argument elem
-    // or clears the existing highlight if elem is null;
+    // Enables HTML coder to add any styling to the highlighted day
     function highlight(elem){
         if(spotlightElem){
             if(spotlightElem.classList.contains(highlightClass)){

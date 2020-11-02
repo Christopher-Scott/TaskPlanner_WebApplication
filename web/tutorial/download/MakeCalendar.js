@@ -39,6 +39,7 @@ function MakeCalendar(params){
     addData();
     
     // public function
+    // If not called, calendar component will work for current month only
     calendarComponent.enableMonthButtons = function(){
         var prev = document.createElement("button");
         var next = document.createElement("button");

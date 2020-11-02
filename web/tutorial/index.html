@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calendar Explanation</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{ margin: 20px;}
+        </style>
+    </head>
+    <body>
+        <h1>MakeCalendar Component</h1>        
+        <div>
+            <a target="_blank" href="download/demo.html">Calendar Demo</a><br>
+            <a target="_blank" href="">Download Zip</a><br>
+        </div>
+        <p>           
+            My component is a Calendar for visualizing date associated data.  It provides two ways of visualizing
+            the data. An accordion effect enhances the visual appeal of the component's two data views.
+            The first is an expanding week view that holds a title or some other small piece of data.               
+            The second view I have called a 'spotlight'.  It allows more detail to be displayed about a selected day.
+            Listed below are the available input parameters:
+        </p>
+        <pre>
+            {array}  objList - a list of the data objects to insert into the calendar
+            {string} datePropName - the date property name for objects in objList. Date must be in mm/dd/yyyy format
+            {string} datumPropName - the data property name for objects in objList
+            {string} detailPropName - the details property name for objects in objList
+            {string} imgPropName - Optional. Property name of an image URL for objects in objList
+    
+            {function} formatSpotlight - Optional function to be called when formatting data added to spotlight  
+    
+            {string} className - an HTML class name to be associated with the returned component
+            {string} activeClass - an HTML class name to be associated with active elements in the component
+            {string} highlightClass - an HTML class name to be associated with highlighted elements in the component
+        </pre>
+        <p>
+            Instead of hard coding styles for selected(active) elements I chose to use a combination of 3 HTML coder
+            specified class names.  "className" is applied to the component itself, while "activeClass" 
+            and "highlightClass" are applied to elements based on user events.  Since this component could display
+            a variety of different data shifting the styling to an external sheet increases the flexibility of
+            the component.
+            <br>
+            "formatSpotlight" is a an optional user-defined function that takes an object as a parameter and returns
+            a string with the data formatted as the user desires.  This custom function allows the user to specify any
+            HTML structure required for displaying their data without affecting the operation of the component.                        
+        </p>
+        <h3>Code Segments</h3>
+        <p>
+            One of the most fundamental elements of my component was calculating the day of week for the 1st of the
+            month and the number of days in the specified month.  
+            <a target="_blank" href="https://www.w3schools.com/code/tryit.asp?filename=GK8SVTXPLNCR">This demo</a> shows
+            how I used methods of the JS date object to do get the values for my calculation.
+            <br>
+        </p>
+        
+        <h3>Helpful links for this project</h3>
+        <ul>
+            <li>
+                <a target="_blank" href="https://www.w3schools.com/howto/howto_css_calendar.asp">How-to Calendar</a><br>
+                The original inspiration for this component.  I deviated heavily from the code outlined here to better
+                accomplish my goals for the component.                
+            </li>
+            <li>
+                <a target="_blank" href="https://www.w3schools.com/howto/howto_js_accordion.asp">How-to Accordion</a><br>
+                A link to the accordion effect page.  I really liked the smooth transition and how the effect
+                could be used to turn a simple looking page into one displaying lots of information.
+            </li>
+            <li>
+                <a target="_blank" href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date'">MDN Date documentation</a><br>
+                I interacted with the JS Date object a lot for this project, and the documentation was crucial for understanding
+                what could be accomplished with it.
+            </li>
+        </ul>
+    </body>
+</html>

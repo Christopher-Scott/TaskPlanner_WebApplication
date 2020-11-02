@@ -1,0 +1,202 @@
+.Calendar {
+    margin: 40px;
+    box-sizing: border-box;    
+    
+    text-align: center;
+    font-family: Verdana, sans-serif
+    
+}
+
+/*.Calendar div{
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}*/
+
+.Calendar div{
+    margin: 10px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.Calendar table {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: 30px auto;    
+    justify-content: center;
+    margin: 0;
+    border-spacing: 4px;
+        
+}
+/* ------- Header ------- */
+
+/* Header Buttons */
+.Calendar div button{
+    grid-row: 2;
+    display: inline-block;
+    width: 80px;
+    height: 40px;
+    /*padding: 15px 20px;*/
+    font-weight: bold;
+    font-size: 2rem;
+    border-radius: 4px;
+    border-style: none;
+}
+
+.Calendar div button:focus{
+    outline: none;
+    background-color: #CCC;
+    box-shadow: 5px 6px 5px grey; 
+}
+
+.Calendar div button:focus{
+    outline: none;
+    background-color: #CCC;
+    box-shadow: 5px 6px 5px grey; 
+}
+
+.Calendar div button:hover{    
+    background-color: #CCC;
+    box-shadow: 5px 6px 5px grey; 
+}
+.Calendar div h2{
+    grid-column: 2;
+    grid-row: 2;
+    font-size: 2.75rem;
+    /*padding: 2px 20px 2px 20px;*/
+    margin: 5px 20px 5px 20px;
+    width: 250px;
+}
+
+.Calendar div h4{
+    grid-column: 2;
+    grid-row: 1;
+    margin: 5px;
+    font-size: 1.5rem;
+        
+}
+
+/* --------- Calendar ------- */
+.Calendar table thead{
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.Calendar table tbody{
+    grid-column: 1;
+    grid-row: 2;
+    
+    font-size: 1.2rem;
+}
+
+/* Spotlight */
+.Calendar table div {
+    grid-column: 2;
+    grid-row: 1/ span 2;   
+    display: block;
+    
+    padding: 20px;
+    background: #eee;
+    box-shadow: 5px 6px 5px grey;
+    
+    width: 0; /*does not snap back to centered if this is not 0*/
+    opacity: 0%;    
+    transition: width 0.2s ease 0s, opacity 1.25s ease 0.2s;
+
+    font-family: Trebuchet, sans-serif;
+    
+    
+}
+
+.Calendar table div.active {
+    width: 240px;
+    opacity: 100%;    
+
+}
+
+.Calendar th {    
+    width: 100px;
+    height: 20px;
+    text-align: center;
+    
+    /*border-spacing: 4px;*/ 
+}
+
+/* Calendar day cells */
+
+.Calendar td {      
+    
+    width: 100px;
+    height: 60px;
+    padding: 10px 0 0 0;
+    
+    /*border-spacing: 4px;*/
+    background-color: aliceblue;
+        
+    text-align: center;
+    vertical-align: top;
+    
+}
+  /*Data elements*/ 
+.Calendar td p {    
+    margin: 0;
+    padding: 10px 0 0 0;
+    vertical-align: middle;        
+    height: 0px;    
+    
+    opacity: 0;
+    transition: height 0.5s ease 0s, opacity 1.25s ease 0.2s;    
+    
+    
+    font-size: 1rem;
+    font-family: Trebuchet, sans-serif;
+    box-shadow: none;
+}
+
+.Calendar p.active{
+    height: 60px;
+    opacity: 100%;
+}
+
+.Calendar td.highlight{
+    background-color: #ccc;
+}
+
+.Calendar td:hover{
+    background-color: #ccc;
+    box-shadow: 2px 3px 5px grey;
+    
+}
+
+.Calendar td:focus{
+    background-color: #ccc;
+    box-shadow: 2px 3px 5px grey;
+    outline: none;
+}
+
+/* Week Expansion buttons */
+.Calendar table button {
+    display: inline-block;
+    width: 100px;
+    height: 70px;    
+    font-weight: bold;
+    font-size: 2rem;
+    border-style: none;
+}
+
+.Calendar table button:hover{
+    background: #CCC;
+    box-shadow: 2px 3px 5px grey; 
+}
+
+.Calendar table button:focus{
+    outline: none;
+    background: #CCC;
+    box-shadow: 2px 3px 5px grey;     
+}
+

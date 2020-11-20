@@ -1,4 +1,4 @@
-var data2 = [
+var sampleData2 = [
                 {
                     date: "10/01/2020", 
                     data: "Halloween Decorations", 

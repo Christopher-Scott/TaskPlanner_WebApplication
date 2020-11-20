@@ -1,0 +1,18 @@
+.insertArea,
+.updateArea{
+    margin-top: 40px;
+    margin-left: 30px;
+    
+    padding-top: 10px;
+    
+    text-align: left;
+}
+
+.insertArea td,
+.updateArea td{
+    padding: 5px;
+}
+
+.error{
+    color: #b31919
+}

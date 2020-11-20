@@ -11,6 +11,7 @@
         <link rel="stylesheet" type="text/css" href="style/slideshow.css">
         <link rel="stylesheet" type="text/css" href="style/clicksort.css">
         <link rel="stylesheet" type="text/css" href="style/logon.css">
+        <link rel="stylesheet" type="text/css" href="style/crudStyle.css">
 
     </head>
     <body>
@@ -25,7 +26,7 @@
                 <div class="dropdown">
                     <div class="drop_header">Account</div>
                     <div class="drop_content">
-                        <a href="" class="drop">Register</a>
+                        <a href="#/userInsert" class="drop">Register</a>
                         <a href="#/logOn" class="drop">Log In</a>
                         <a href="#/profile" class="drop">Profile</a>
                         <a href="#/logOff" class="drop">Log Out</a>
@@ -47,8 +48,8 @@
                     <div class="drop_content">
                         <a href="tutorial/proposal.pdf" target="_blank" class="drop">Proposal</a>
                         <a href="tutorial/poc.html" target="_blank" class="drop">Proof of Concept</a>
-                        <a href="" class="drop">Tutorial Home</a>
-                        <a href="" class="drop">Demo</a>
+                        <a href="tutorial/index.html" target="_blank" class="drop">Tutorial Home</a>
+                        <a href="tutorial/download/demo.html" target="_blank" class="drop">Demo</a>
                     </div>
                 </div>
                 <div class="dropdown">
@@ -68,14 +69,22 @@
         <script src="js/reusable/MakeSlideShow.js"></script>
         <script src="js/reusable/ajax.js"></script>
         <script src="js/reusable/MakeTable.js"></script>
+        <script src="js/reusable/Utils.js"></script>
+        <script src="js/reusable/routeParamFw.js"></script>
+        
         <script src="js/components/home.js"></script>
         <script src="js/components/blog.js"></script>
         <script src="js/components/SlideShows.js"></script>
         <script src="js/components/Users.js"></script>
         <script src="js/components/Tasks.js"></script>
-        <script src="js/components/LiveUsers.js"></script>
-        <script src="js/components/LiveTasks.js"></script>
-        <script src="js/components/account.js"></script>
+        <script src="js/components/webUserList.js"></script>        
+        <script src="js/components/taskList.js"></script>
+        <script src="js/components/account.js"></script>        
+        <script src="js/components/taskMods.js"></script>
+        <script src="js/components/webUserMods.js"></script>
+        
+        <script src="js/CRUD_icons.js"></script>
+        
 
         <script>
             "use strict";
@@ -93,14 +102,20 @@
             routes["#/slideshow"] = SlideShows;
             routes["#/users"] = Users;
             routes["#/tasks"] = Tasks;
-            routes["#/liveUsers"] = LiveUsers;
-            routes["#/liveTasks"] = LiveTasks;
+            routes["#/liveUsers"] = webUserList;
+            routes["#/liveTasks"] = taskList;
             routes["#/logOn"] = account.logon;
             routes["#/logOff"] = account.logoff;
             routes["#/profile"] = account.getProfile;
+            routes["#/taskUpdate"] = taskMods.update;
+            routes["#/userUpdate"] = webUserMods.update;
+            routes["#/userInsert"] = webUserMods.insert;
 
             // call router framework with parameters object
-            routeFW({contentID: "content", startLink: "#/home", routingTable: routes});
+            routeParamFw({
+                contentId: "content", 
+                startLink: "#/home", 
+                routeArray: routes});
 
         </script>
 

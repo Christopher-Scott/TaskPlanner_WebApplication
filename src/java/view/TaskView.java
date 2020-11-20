@@ -21,8 +21,8 @@ public class TaskView {
         //ResultSet results = null;
         StringDataList sdl = new StringDataList();
         try {
-            String sql = "SELECT task_id, task.image, web_user.user_email, " +
-                    "task_title, task_desc, due_date, task_weight, "
+            String sql = "SELECT task_id, task.image, web_user.user_email, "
+                    + "task_title, task_desc, due_date, task_weight, unique_title_id, "
                     + "task.web_user_id, web_user.user_role_id "
                     + "FROM task, web_user "
                     + "WHERE task.web_user_id = web_user.web_user_id "
@@ -42,6 +42,7 @@ public class TaskView {
                     taskData.taskWeight = FormatUtils.plainInteger(results.getObject("task_weight"));
                     taskData.webUserId = FormatUtils.plainInteger(results.getObject("web_user_id"));
                     taskData.userRoleId = FormatUtils.plainInteger(results.getObject("user_role_id"));
+                    taskData.uniqueTitleId = FormatUtils.formatString(results.getObject("unique_title_id"));
                 } catch (Exception e) {
                     taskData.errorMsg = "Exception thrown in TaskView while adding task data: " + e.getMessage();
                 }

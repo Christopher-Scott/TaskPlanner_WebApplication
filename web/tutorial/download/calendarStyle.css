@@ -119,12 +119,12 @@
 
 }
 
-.Calendar th {    
+.Calendar th {
+    padding: 0;
     width: 100px;
     height: 20px;
     text-align: center;
-    
-    /*border-spacing: 4px;*/ 
+        
 }
 
 /* Calendar day cells */

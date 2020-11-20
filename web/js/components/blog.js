@@ -143,7 +143,58 @@ function blog(){
                     <li><a target="_blank" href="webAPIs/listUsersAPI.jsp">List all users</a></li>
                 </ul>
             </p>
+    
+            <h2>Tutorial</h2>
+            <p>
+                Creating my Calendar component required building on much that we have learned in this class.
+                I looked at how we implemented the drop down headers and clicksort table and applied that knowledge
+                to a new component.  I predicted in my proposal that the creation of the component and accessing elements
+                in it would be easier than building my proof of concept.  This ended up being true because there were
+                a lot of repetitive elements that could easily be created programmitcally.  This really drove home the
+                value of creating reuseable components using JavaScript over static website content with HTML.
+                Another thing I found valuable about this assignment was encapsulation with private functions
+                I attempted to encapsulate much of the code for the component.  This paid off as I found myself needing the same code logic again and again.
+            </p>
+            <p>    
+                I did have to learn more about some of the JS built in objects as part of this assignment.  The JS Date object was
+                the most important.  
+                Much time was spent figuring out how I could use the date objects almost like a key to match up a data cell in the component
+                to the corresponding data.  
+            </p>
+            <p>
+                The hardest part of this assignment was creating the default styling for the component.  Often I found that elements
+                I did not want to be selected were being changed, and that the cascading functionality of the style sheets
+                was dictating the specific order to style the items.  Particularly, I originally had a div element containing
+                the data inside of a td element.  The styling for these child divs clashed with the spotlight, which was also
+                a div.  The hover styling also did not work properly because of the child div elements.  I was able to solve 
+                my problem by rethinking the structure of the element tree I was using.  By using paragraph elements and spreading
+                out the top branches of the component's element tree I was able to achieve my goals.
+            </p>
             
+            <h2>Update</h2>
+            <p>
+                This assignment required refactoring some parts of my web app from previous assignments.  Originally I did not have
+                a unique 'description' column in my database schema.  To rectify this issue I had to add a new unique column 'uniqueTitleId'
+                that would be a concatenation between the task title and the web User ID foreign key.  All of the logic for managing this new
+                field is handled server side and thus the refactor had minimal impact on my existing client side code.  
+                I also modified my clicksort component (MakeTable.js)
+                to handle passed DOM elements as well as Strings.  This refactor let me create the update icon elements and set the properties before inserting
+                it into the table as well as incorporating the elements into the sorting and filter functionality.  
+                I made these changes before the sample code was updated, but I am glad I made the change because it was simple and
+                extended the flexibility of the component.
+            </p>
+            <p>
+                I chose to only enable updates to the tasks that belong to the logged in user.  The validation happened both client side and server side.
+                In the update API an error message is returned and the update is canceled if the requesting user does not match the logged on user in the
+                session object.  On the client side I refactored the taskList component so that it first uses an ajax call to get the logged on user
+                via the getProfileAPI and then the success callback function has a nested ajax call that retrieves the Task data.  Then the clicksort
+                is created, only adding update icons for the logged on user, or none at all if there is no user logged on.  The hardest part of this
+                was coming up with the idea to use the getProfileAPI.  After that the implementation was simple.
+            </p>
+            <p>
+                Because I did the tutorial homework I added the insert functionality provided in the sample code to my web user list.  Now the register
+                link is functional, and there is also an insert icon in the header of the web user list.
+            </p>
             `
     
     var element = document.createElement("div");

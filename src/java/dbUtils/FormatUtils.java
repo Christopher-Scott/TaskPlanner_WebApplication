@@ -32,8 +32,8 @@ public class FormatUtils {
         if (obj == null) {
             return "";
         }
-        BigDecimal bd = (BigDecimal) obj;
         try {
+            BigDecimal bd = (BigDecimal) obj;
             DecimalFormat intFormat = new DecimalFormat("$###,###,###,##0.00");
             return intFormat.format(bd);
         } catch (Exception e) {

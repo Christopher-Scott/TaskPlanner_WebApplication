@@ -48,7 +48,12 @@ function MakeTable(params){
     
     function addRow(tag, parent, value, align){
         var rowElem = document.createElement(tag);
-        rowElem.innerHTML = value;
+        if(typeof value === 'string' || value instanceof String){
+            rowElem.innerHTML = value;
+        }
+        else{
+            rowElem.appendChild(value);
+        }
         rowElem.style.textAlign = align;
         parent.appendChild(rowElem);
         
@@ -57,21 +62,27 @@ function MakeTable(params){
     
     function alignment(val) {
         
-        var parsedDate = Date.parse(val);
-        if (isNaN(val) && (!isNaN(parsedDate))) {
-            return "center";
-        }
+        if(typeof val === 'string' || val instanceof String){
         
-        if (val.includes(".png") || val.includes(".jpg")) {
-            return "center";
+            var parsedDate = Date.parse(val);
+            if (isNaN(val) && (!isNaN(parsedDate))) {
+                return "center";
+            }
+
+            if (val.includes(".png") || val.includes(".jpg")) {
+                return "center";
+            }
+
+            var possNum = val.replace("$", "");
+            possNum = possNum.replace(",", "");
+            if (isNaN(possNum)) {
+                return "left";
+            }
+            return "right";
         }
-        
-        var possNum = val.replace("$", "");
-        possNum = possNum.replace(",", "");
-        if (isNaN(possNum)) {
-            return "left";
+        else{ // val is an element
+            "center";
         }
-        return "right";
     }
     
     function prettifyColumnHead(propName){
@@ -168,25 +179,30 @@ function MakeTable(params){
                 );
         
         // converts the argument into a comparable value, either string, number, or date
-        function convert(s){            
-            if(!s || s.length === 0){
-                return "";
-            }
-            // Date.parse returns number value
-            var parsedDate = Date.parse(s);
-            if (isNaN(s) && !isNaN(parsedDate)){
-                return parsedDate;                
-            }
-            else{
-                var temp = s;
-                temp = temp.replace("$", "");
-                temp = temp.replace(",", "");
-                if (isNaN(temp)){
-                    return s.toUpperCase();
+        function convert(s){
+            if(typeof s === 'string' || s instanceof String){
+                if(!s || s.length === 0){
+                    return "";
+                }
+                // Date.parse returns number value
+                var parsedDate = Date.parse(s);
+                if (isNaN(s) && !isNaN(parsedDate)){
+                    return parsedDate;                
                 }
                 else{
-                    return Number(temp);
+                    var temp = s;
+                    temp = temp.replace("$", "");
+                    temp = temp.replace(",", "");
+                    if (isNaN(temp)){
+                        return s.toUpperCase();
+                    }
+                    else{
+                        return Number(temp);
+                    }
                 }
+            }
+            else{
+                return "";
             }
         }
     }

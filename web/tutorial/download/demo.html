@@ -9,14 +9,15 @@
     </head>
     <body>
         <div id="cal"></div>
+        <div id="cal2"></div>
         <script src="MakeCalendar.js"></script>
-        <script src="firstData.js"></script>
-        <script src="secondData.js"></script>
+        <script src="sampleData1.js"></script>
+        <script src="sampleData2.js"></script>
         <script>            
                        
             
             var params = {};
-            params.objList = data; // data is defined in firstData.js
+            params.objList = sampleData1;
             params.datePropName = "dueDate";
             params.datumPropName = "taskTitle";
             params.detailPropName = "taskDesc";
@@ -26,11 +27,13 @@
             document.getElementById("cal").appendChild(cal);
             
             var params = {};
-            params.objList = data2;
+            params.objList = sampleData2;
             params.datePropName = "date";
             params.datumPropName = "data";
             params.detailPropName = "detail";
             params.imgPropName = "image";
+            params.month = 9;
+            params.year = 2020;
             
             // Set the formatSpotlight function to a custom format
             params.formatSpotlight = function(obj){
@@ -40,7 +43,7 @@
               return output;
             };
             var cal2 = MakeCalendar(params);            
-            document.getElementById("cal").appendChild(cal2);
+            document.getElementById("cal2").appendChild(cal2);
             
         </script>
             

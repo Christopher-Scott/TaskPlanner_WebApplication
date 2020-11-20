@@ -5,42 +5,56 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
-            body{ margin: 20px;}
+            body{ 
+                margin: 20px 40px;
+                background-color: lightgrey;
+                font-size: 1.2rem;
+                font-family: Trebuchet, sans-serif;
+            }
         </style>
     </head>
     <body>
-        <h1>MakeCalendar Component</h1>        
-        <div>
-            <a target="_blank" href="download/demo.html">Calendar Demo</a><br>
-            <a target="_blank" href="">Download Zip</a><br>
-        </div>
+        <h1>Calendar Component</h1>        
+        
         <p>           
-            My component is a Calendar for visualizing date associated data.  It provides two ways of visualizing
+            This component is a Calendar widget for visualizing date associated data.  It provides two ways of visualizing
             the data. An accordion effect enhances the visual appeal of the component's two data views.
             The first is an expanding week view that holds a title or some other small piece of data.               
-            The second view I have called a 'spotlight'.  It allows more detail to be displayed about a selected day.
-            Listed below are the available input parameters:
+            The second view I have called a 'spotlight'.  It allows more detail to be displayed about a selected day.            
         </p>
+        <div>
+            <a style="font-size:1.3rem" target="_blank" href="download/demo.html">Check out a Demo!</a><br>
+            <a style="font-size:1.3rem" target="_blank" href="download.zip">Download Zip</a><br>
+        </div>
+        
+        <h3>Required Parameters</h3>
         <pre>
             {array}  objList - a list of the data objects to insert into the calendar
             {string} datePropName - the date property name for objects in objList. Date must be in mm/dd/yyyy format
             {string} datumPropName - the data property name for objects in objList
             {string} detailPropName - the details property name for objects in objList
-            {string} imgPropName - Optional. Property name of an image URL for objects in objList
+        </pre>
+        
+        <h3>Optional Parameters</h3>
+        <pre>
+            {string} imgPropName - Property name of an image URL for objects in objList
+            {number} month - A specific month to create the calendar for.  Indexed 0-11. 'year' must also be specified.
+            {number} year - The year to create the calendar month for. 'month' must also be specified.
     
-            {function} formatSpotlight - Optional function to be called when formatting data added to spotlight  
+            {function} formatSpotlight - function to be called when formatting data added to spotlight  
     
             {string} className - an HTML class name to be associated with the returned component
-            {string} activeClass - an HTML class name to be associated with active elements in the component
-            {string} highlightClass - an HTML class name to be associated with highlighted elements in the component
+            {string} activeClass - an HTML class name to be associated with elements in the expanded week view
+            {string} highlightClass - an HTML class name to be associated with elements highlighted in the spotlight view
         </pre>
         <p>
-            Instead of hard coding styles for selected(active) elements I chose to use a combination of 3 HTML coder
-            specified class names.  "className" is applied to the component itself, while "activeClass" 
+            Instead of hard coding styles for active elements I used a combination of 3 classes applied to the elements.  
+            "className" is applied to the component itself, while "activeClass" 
             and "highlightClass" are applied to elements based on user events.  Since this component could display
             a variety of different data shifting the styling to an external sheet increases the flexibility of
             the component.
-            <br>
+        </p>
+        <p>
             "formatSpotlight" is a an optional user-defined function that takes an object as a parameter and returns
             a string with the data formatted as the user desires.  This custom function allows the user to specify any
             HTML structure required for displaying their data without affecting the operation of the component.                        
@@ -49,10 +63,22 @@
         <p>
             One of the most fundamental elements of my component was calculating the day of week for the 1st of the
             month and the number of days in the specified month.  
-            <a target="_blank" href="https://www.w3schools.com/code/tryit.asp?filename=GK8SVTXPLNCR">This demo</a> shows
-            how I used methods of the JS date object to do get the values for my calculation.
-            <br>
+            <a target="_blank" href="https://www.w3schools.com/code/tryit.asp?filename=GKCOJV2B4SW3">This example</a> shows
+            how I used methods of the JS date object to do get the values for building the calendar.            
         </p>
+        <p> The structure of the calendar uses an HTML table where each data cell represents a day.
+            <a target="_blank" href="https://www.w3schools.com/code/tryit.asp?filename=GKCNMVPY4QVD">This example</a> shows
+            how you can generate the table using JavaScript.  The example code includes a method for advancing to the next row
+            as elements are added to the table.
+        </p>
+        <p>
+            I used a function to facilitate changing the visibility of elements in response to user events.  
+            <a target='_blank' href='https://www.w3schools.com/code/tryit.asp?filename=GKCKM9JB6XF9'>This example of the show function</a>
+            is changed slightly from the component code to work on the try-it page.  Importantly, the function changes the visibility
+            of an element using its style property, and also manages the addition of an HTML coder specified class name. By applying
+            the class name more sophisticated styling can be used on the component since the style is not hard coded.
+        </p>
+        
         
         <h3>Helpful links for this project</h3>
         <ul>
@@ -71,6 +97,12 @@
                 I interacted with the JS Date object a lot for this project, and the documentation was crucial for understanding
                 what could be accomplished with it.
             </li>
+            <li>
+                <a target="_blank" href="https://www.w3schools.com/css/css_grid.asp">w3Schools CSS Grid</a><br>
+                The styling for this component was very challenging and I tried a lot of different solutions,
+                helped by the w3Schools pages.  CSS Grid display was particularly helpful in getting the styling right.                
+            </li>
+            
         </ul>
     </body>
 </html>

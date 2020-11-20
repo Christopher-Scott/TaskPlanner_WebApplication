@@ -1,8 +1,5 @@
 package model.task;
 
-import dbUtils.FormatUtils;
-import java.sql.ResultSet;
-
 
 /* The purpose of this class is just to "bundle together" all the 
  * character data that the user might type in when they want to 
@@ -23,7 +20,8 @@ public class StringData {
     public String dueDate = "";
     public String taskWeight = "";
     public String webUserId  = "";
-    public String userRoleId = "";                     
+    public String userRoleId = "";
+    public String uniqueTitleId = "";
     
 
     public String errorMsg = "";
@@ -33,12 +31,21 @@ public class StringData {
     }
 
     public int getCharacterCount() {
-        String s = this.taskId + this.taskTitle;
+        String s = this.taskId + this.taskTitle + this.taskDesc + this.image + this.dueDate + this.taskWeight
+                + this.webUserId + this.userEmail + this.userRoleId + this.uniqueTitleId;
         return s.length();
     }
 
     public String toString() {
-        return "Web User Id:" + this.taskId
-                + ", User Email: " + this.taskTitle;
+        return "Task Id:" + this.taskId
+                + "\nTask Title: " + this.taskTitle
+                + "\nTask Desc: " + this.taskDesc
+                + "\nDue Date: " + this.dueDate
+                + "\nImage: " + this.image
+                + "\nTask Weight: " + this.taskWeight
+                + "\nWeb User Id: " + this.webUserId
+                + "\nUser Email: " + this.userEmail
+                + "\nUser Rold Id: " + this.userRoleId
+                + "\nUnique Title: " + this.uniqueTitleId;
     }
 }

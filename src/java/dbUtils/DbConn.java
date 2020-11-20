@@ -13,9 +13,9 @@ public class DbConn {
     private java.sql.Connection conn = null;
 
     public DbConn() {
-        
+             
         String dbAndPass = "FA20_3308_tuc48712?user=tuc48712&password=thubaiza";
-
+        
         try {
             String DRIVER = "com.mysql.jdbc.Driver";
             Class.forName(DRIVER).newInstance();
@@ -75,13 +75,14 @@ public class DbConn {
         try {
             String hostName = java.net.InetAddress.getLocalHost().getCanonicalHostName();
             hostName = hostName.toLowerCase();
-            System.out.println("***** hostName is [" + hostName + "] *****");
             if (hostName.endsWith("temple.edu")) {
                 temple = true;
-             } else {
+                //System.out.println("************* Running from Temple, so using cis-linux2 for db connection");
+            } else {
+                //System.out.println("************* Not running from Temple, so using local for db connection");
             }
         } catch (Exception e) {
-            recordError("Unable to get hostName: " + e.getMessage());
+            recordError("Unable to get hostname: " + e.getMessage());
         }
         return temple;
     }

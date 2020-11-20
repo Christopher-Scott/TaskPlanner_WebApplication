@@ -5,12 +5,14 @@
  *   @param {string} datumPropName - the data property name for objects in objList
  *   @param {string} detailPropName - the details property name for objects in objList
  *   @param {string} imgPropName - Optional. Property name of an image URL for objects in objList
+ *   @param {number} month - Optional.  A specific month to create the calendar for.  Indexed 0-11
+ *   @param {number} year - Optional. The year to create the calendar month for.
  *   
  *   @param {function} formatSpotlight - Optional function to be called when formatting data added to spotlight  
  *   
  *   @param {string} className - an HTML class name to be associated with the returned component
- *   @param {string} activeClass - an HTML class name to be associated with active elements in the component
- *   @param {string} highlightClass - an HTML class name to be associated with highlighted elements in the component
+ *   @param {string} activeClass - an HTML class name to be associated with elements in the expanded week view
+ *   @param {string} highlightClass - an HTML class name to be associated with elements highlighted in the spotlight view
  * 
  */
 function MakeCalendar(params){
@@ -21,15 +23,26 @@ function MakeCalendar(params){
     var dateProp = params.datePropName;
     var dataProp = params.datumPropName;
     var detailProp = params.detailPropName;
-    var imgProp = params.imgPropName || "";
+    var imgProp = params.imgPropName || "";   
     
     var calendarComponent = document.createElement("div");        
     calendarComponent.classList.add(calClassName);
     
-    var dateObj = new Date();
-    var month = dateObj.getMonth();
-    var year = dateObj.getFullYear();
-//    var monthName = dateObj.toLocaleString("default", {month: "long"});
+    var dateObj;
+    var month;
+    var year;
+    // Defaults to current month if not specified in params
+    if(params.month && params.year){
+        month = params.month;
+        year = params.year;
+        dateObj = new Date(year, month);        
+    }
+    else{
+        dateObj = new Date();
+        month = dateObj.getMonth();
+        year = dateObj.getFullYear();
+    }
+    
     
    
     var cal = genCalendar(month, year, calendarComponent);
@@ -39,7 +52,7 @@ function MakeCalendar(params){
     addData();
     
     // public function
-    // If not called, calendar component will work for current month only
+    // If not called, calendar component will work for specified month only
     calendarComponent.enableMonthButtons = function(){
         var prev = document.createElement("button");
         var next = document.createElement("button");
@@ -118,7 +131,7 @@ function MakeCalendar(params){
         calObj.table.appendChild(calObj.header);
         
         var dummyCells = (new Date(year, month)).getDay(); // padding elements
-        var numCells = daysInMonth(month + 1, year);
+        var numCells = daysInMonth(month, year);
         
         var body = document.createElement("tbody");
         calObj.body = body;
@@ -158,12 +171,12 @@ function MakeCalendar(params){
     
     /* returns the number of days for specified month, year     
      *  
-     * @param {number} month
+     * @param {number} month indexed 0-11
      * @param {number} year
      * @returns {number} Number of days in month
      */
     function daysInMonth(month, year){
-        return new Date(year, month, 0).getDate();
+        return new Date(year, month + 1, 0).getDate();
     }
     
     function expandWeek(){
@@ -199,8 +212,7 @@ function MakeCalendar(params){
         hide(cal.spotlight);
         show(cal.spotlight);
         
-//        console.log(e.target.tagName);
-        // Handle clicked child div
+        // Handle clicked child elem
         var elem;
         if(e.target.tagName === "P"){
             elem = e.target.parentElement;
@@ -208,7 +220,6 @@ function MakeCalendar(params){
         else{
             elem = e.target;
         }
-//        console.log(elem);
 
         highlight(elem);
         var day = elem.innerText;

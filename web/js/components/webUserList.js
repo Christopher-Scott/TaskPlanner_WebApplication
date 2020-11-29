@@ -37,6 +37,7 @@ function webUserList() {
             
             list[i].webUserId = obj.webUserList[i].webUserId;
             list[i].userEmail = obj.webUserList[i].userEmail;
+            list[i].userPassword = obj.webUserList[i].userPassword;
             // change image property to conain an image tag
             if(obj.webUserList[i].image.length > 0){
                 list[i].image = "<img src='" + obj.webUserList[i].image + "' style=width:10rem>";

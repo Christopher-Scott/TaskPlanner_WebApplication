@@ -1,5 +1,13 @@
 function taskList() {
     var tableContainer = document.createElement("div");
+    var modal = modalFW({
+                "className": "modal",
+                "hideClass": "fadeOut",        
+                "showClass": "fadeOut",
+                "exitClass": "x",
+                "buttonClass": "buttonArea"
+            });
+    tableContainer.appendChild(modal);
         
     // Get the logged on user
     ajax("webAPIs/getProfileAPI.jsp", processLoggedOn, tableContainer);
@@ -48,9 +56,11 @@ function taskList() {
                     // only add the update icon for the rows belonging to logged on user - client side validation
                     if(user.webUserId === obj.taskList[i].webUserId){                                            
                         list[i].update = addUpdate(list[i].taskId);
+                        list[i].delete = addDelete(list[i].taskId);
                     }
                     else{
                         list[i].update = "";
+                        list[i].delete = "";
                     }
                 }
                 
@@ -79,6 +89,20 @@ function taskList() {
                 };
 
                 return img;
+            }
+            
+            function addDelete(id){
+                var img = document.createElement("img");
+                
+                img.src = CRUD_icons.delete;
+                img.taskId = id;
+                img.onclick = function() {
+                    modal.confirm("Are you sure you want to delete this record?",
+                    function(){taskMods.delete(img.taskId, img);});
+                };
+                
+                return img;
+                
             }
         } 
     }

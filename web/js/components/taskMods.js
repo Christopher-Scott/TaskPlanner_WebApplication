@@ -176,5 +176,15 @@ var taskMods = {};
         }
                 
     };
+    
+    taskMods.delete = function(taskId, icon){
+        console.log("deleting " + taskId);
+        
+        var row = icon.parentNode.parentNode;
+        var index = row.rowIndex;
+        var table = row.parentNode;
+        table.deleteRow(index);
+    };
+   
 }());
 

@@ -1,5 +1,14 @@
 function webUserList() {
     var tableContainer = document.createElement("div");
+    var modal = modalFW({
+                "className": "modal",
+                "hideClass": "fadeOut",        
+                "showClass": "fadeOut",
+                "exitClass": "x",
+                "buttonClass": "buttonArea"
+            });
+    tableContainer.appendChild(modal);
+            
     
     ajax("webAPIs/listUsersAPI.jsp", processUsersList, tableContainer);
     
@@ -50,6 +59,7 @@ function webUserList() {
             list[i].userRoleType = obj.webUserList[i].userRoleType;
             
             list[i].update = addUpdate(list[i].webUserId);
+            list[i].delete = addDelete(list[i].webUserId);
         }
                 
         var tableParams = {
@@ -73,6 +83,24 @@ function webUserList() {
             };
             
             return img;
+        }
+        
+        function addDelete(id){
+            var img = document.createElement("img");
+
+            img.src = CRUD_icons.delete;
+            img.webUserId = id;
+            img.onclick = function() {
+                modal.confirm("Are you sure you want to delete this record?",
+                function(){
+                    var error = webUserMods.delete(img.webUserId, img);
+                    error.classList.add("error");                    
+                    tableContainer.parentNode.insertBefore(error, tableContainer);
+                });
+            };
+
+            return img;
+                
         }
     }        
     

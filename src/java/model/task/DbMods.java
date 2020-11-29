@@ -166,4 +166,35 @@ public class DbMods {
         }
         return errorMsgs;
     }
+    
+    public static String delete(String id, DbConn dbc){
+        String errorMsg = "";
+        
+        if(id == null){
+            return "Error in model.task.DbMods.delete: cannot delete task because id is null";
+        }
+        
+        try{
+            String sql = "DELETE FROM task WHERE task_id = ?";
+            
+            PrepStatement stmt = new PrepStatement(dbc, sql);
+            
+            stmt.setString(1, id);
+            
+            int numRows = stmt.executeUpdate();
+            
+            // TODO: add more error cases
+            
+            if(numRows == 0){
+                errorMsg = "Record not deleted - no record with id " + id;
+            }
+            else if (numRows > 1){
+                errorMsg = "Too many records deleted";
+            }
+        } catch (Exception e){
+            errorMsg = "Exception thrown in mode.task.DbMods.delete(): " + e.getMessage();
+        }
+        
+        return errorMsg;        
+    }
 }

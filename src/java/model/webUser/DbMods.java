@@ -249,5 +249,36 @@ public class DbMods {
         } // customerId is not null and not empty string.
         return errorMsgs;
     } // update
+    
+    public static String delete(String id, DbConn dbc){
+        String errorMsg = "";
+        
+        if(id == null){
+            return "Error in model.webUser.DbMods.delete: cannot delete webUser because id is null";
+        }
+        
+        try{
+            String sql = "DELETE FROM web_user WHERE web_user_id = ?";
+            
+            PrepStatement stmt = new PrepStatement(dbc, sql);
+            
+            stmt.setString(1, id);
+            
+            int numRows = stmt.executeUpdate();
+            
+            // TODO: add more error cases
+            
+            if(numRows == 0){
+                errorMsg = "Record not deleted - no record with id " + id;
+            }
+            else if (numRows > 1){
+                errorMsg = "Too many records deleted";
+            }
+        } catch (Exception e){
+            errorMsg = "Exception thrown in mode.webUser.DbMods.delete(): " + e.getMessage();
+        }
+        
+        return errorMsg;        
+    }
 
 } // class

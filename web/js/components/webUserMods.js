@@ -356,6 +356,25 @@ var webUserMods = {};
         return updateDiv;
 
     }; // end of webUsers.update
+    
+    webUserMods.delete = function(webUserId, icon){
+        console.log("Deleting user " + webUserId);
+        var error = document.createElement("div");        
+        
+        ajax("webAPIs/deleteUserAPI.jsp?webUserId=" + webUserId, deleteUserFromTable, error);
+        
+        function deleteUserFromTable(obj) {
+            error.innerHTML = obj.errorMsg;            
+            if(!error.innerHTML){
+                var row = icon.parentNode.parentNode;
+                var index = row.rowIndex;
+                var table = row.parentNode;
+                table.deleteRow(index);
+            }
+        };
+        
+        return error;
+    };
 
 
 }());  // end of the IIFE

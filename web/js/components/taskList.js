@@ -2,10 +2,7 @@ function taskList() {
     var tableContainer = document.createElement("div");
     var modal = modalFW({
                 "className": "modal",
-                "hideClass": "fadeOut",        
-                "showClass": "fadeOut",
-                "exitClass": "x",
-                "buttonClass": "buttonArea"
+                "hideClass": "close"                                                        
             });
     tableContainer.appendChild(modal);
         
@@ -91,14 +88,19 @@ function taskList() {
                 return img;
             }
             
-            function addDelete(id){
+            function addDelete(taskId){
                 var img = document.createElement("img");
                 
                 img.src = CRUD_icons.delete;
-                img.taskId = id;
+                img.taskId = taskId;                
                 img.onclick = function() {
-                    modal.confirm("Are you sure you want to delete this record?",
-                    function(){taskMods.delete(img.taskId, img);});
+                    modal.confirm("Are you sure you want to delete this task?",
+                    function(){                        
+                        var error = taskMods.delete(img.taskId, user.webUserId, img);
+                        error.innerHTML = "...";
+                        // Use the modal to display the error message
+                        modal.displayElement(error);
+                    });
                 };
                 
                 return img;

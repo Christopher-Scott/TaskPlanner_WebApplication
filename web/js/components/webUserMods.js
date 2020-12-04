@@ -358,8 +358,8 @@ var webUserMods = {};
     }; // end of webUsers.update
     
     webUserMods.delete = function(webUserId, icon){
-        console.log("Deleting user " + webUserId);
-        var error = document.createElement("div");        
+        console.log("Attempting to delete user " + webUserId);
+        var error = document.createElement("p");        
         
         ajax("webAPIs/deleteUserAPI.jsp?webUserId=" + webUserId, deleteUserFromTable, error);
         
@@ -370,6 +370,8 @@ var webUserMods = {};
                 var index = row.rowIndex;
                 var table = row.parentNode;
                 table.deleteRow(index);
+                error.innerHTML = "User successfully deleted";
+                console.log("Succesfully Deleted User");
             }
         };
         

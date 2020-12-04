@@ -2,14 +2,11 @@ function webUserList() {
     var tableContainer = document.createElement("div");
     var modal = modalFW({
                 "className": "modal",
-                "hideClass": "fadeOut",        
-                "showClass": "fadeOut",
-                "exitClass": "x",
-                "buttonClass": "buttonArea"
+                "hideClass": "close"                                        
             });
-    tableContainer.appendChild(modal);
             
-    
+    tableContainer.appendChild(modal);
+                        
     ajax("webAPIs/listUsersAPI.jsp", processUsersList, tableContainer);
     
     return tableContainer;
@@ -46,7 +43,8 @@ function webUserList() {
             
             list[i].webUserId = obj.webUserList[i].webUserId;
             list[i].userEmail = obj.webUserList[i].userEmail;
-            // change image property to conain an image tag
+            list[i].password = obj.webUserList[i].userPassword;
+            // change image property to contain an image tag
             if(obj.webUserList[i].image.length > 0){
                 list[i].image = "<img src='" + obj.webUserList[i].image + "' style=width:10rem>";
             }
@@ -91,11 +89,12 @@ function webUserList() {
             img.src = CRUD_icons.delete;
             img.webUserId = id;
             img.onclick = function() {
-                modal.confirm("Are you sure you want to delete this record?",
-                function(){
+                modal.confirm("Are you sure you want to delete this user?",
+                function(){                    
                     var error = webUserMods.delete(img.webUserId, img);
-                    error.classList.add("error");                    
-                    tableContainer.parentNode.insertBefore(error, tableContainer);
+                    error.innerHTML = "...";
+                    // Use the modal to display the error message
+                    modal.displayElement(error);                    
                 });
             };
 

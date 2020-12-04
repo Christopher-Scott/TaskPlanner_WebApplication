@@ -177,13 +177,25 @@ var taskMods = {};
                 
     };
     
-    taskMods.delete = function(taskId, icon){
-        console.log("deleting " + taskId);
+    taskMods.delete = function(taskId, webUserId, icon){
+        console.log("Attempting to delete task " + taskId);
+                
+        var error = document.createElement("p");        
         
-        var row = icon.parentNode.parentNode;
-        var index = row.rowIndex;
-        var table = row.parentNode;
-        table.deleteRow(index);
+        ajax("webAPIs/deleteTaskAPI.jsp?taskId=" + taskId + "&webUserId=" + webUserId, deleteTaskFromTable, error);
+        
+        function deleteTaskFromTable(obj) {
+            error.innerHTML = obj.errorMsg;            
+            if(!error.innerHTML){
+                var row = icon.parentNode.parentNode;
+                var index = row.rowIndex;
+                var table = row.parentNode;
+                table.deleteRow(index);
+                error.innerHTML = "Task successfully deleted";
+            }
+        };
+        
+        return error;
     };
    
 }());

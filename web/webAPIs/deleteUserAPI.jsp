@@ -15,9 +15,14 @@
     }
     else{    
         DbConn dbc = new DbConn();
-        errorMsgs.errorMsg = dbc.getErr();
+        // If we get an error here it is from not being able to connect to the DB
+        errorMsgs.errorMsg = dbc.getErr();                
         if(errorMsgs.errorMsg.length() == 0){
             errorMsgs.errorMsg = DbMods.delete(webUserId, dbc);
+        }
+        else{
+            errorMsgs.errorMsg = "Database Unavailable - Please try again later or contact an administrator."
+                + " Error Message - " + errorMsgs.errorMsg;
         }
         dbc.close();
     }

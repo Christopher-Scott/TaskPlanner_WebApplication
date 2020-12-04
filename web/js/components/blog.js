@@ -195,6 +195,24 @@ function blog(){
                 Because I did the tutorial homework I added the insert functionality provided in the sample code to my web user list.  Now the register
                 link is functional, and there is also an insert icon in the header of the web user list.
             </p>
+    
+            <h2>Delete</h2>
+            <p>
+                Most of the delete functionality was simple to implement because it was similar to the update functionality.  Some of the changes
+                I made to my application for the update homework, like refactoring the clicksort to handle DOM elements, 
+                really helped simplify this assignment as well.  Although the homework requirements did not call for it, I enabled delete functionality 
+                only for a logged on user's task records.  I made the deleteTaskAPI with this approach because I had gone that route for the
+                update as well.  As a result, there is a deviation from the homework requirements and my implementation&mdash;I had to add the logged on
+                user's id as an an additional parameter to the delete API request.  Hopefully this is acceptable.
+            </p>
+            <p>
+                One difficulty I ran into with this assignment was where to put the error messages returned by the API on my page.  While developing
+                the client side code I had a div for the error messages at the top of the page but this looked terribly ugly.  I did not like that the
+                user might be scrolled down the table and have to scroll to the top to get any response for their delete request.  I had already incorporated
+                a modal window to confirm the delete request, so the answer was to use that modal to show the response to the user.  I extended my modal
+                framework code with another public method that takes a DOM element as a parameter and displays it as a child of the message area.
+                This way I could take the element that was originally passed to the ajax call for the delete request and display it in the modal window.
+            </p>
             `
     
     var element = document.createElement("div");

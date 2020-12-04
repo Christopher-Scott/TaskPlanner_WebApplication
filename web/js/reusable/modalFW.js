@@ -1,32 +1,37 @@
 function modalFW(params) {
     
     function hide(elem){
-        elem.classList.add(params.hideClass);       
+        elem.classList.add(params.hideClass);
+        elem.style.display = "none";
     }
     
     function show(elem){
-        elem.classList.remove(params.showClass);
+        elem.classList.remove(params.hideClass);
+        elem.style.display = "block";
     }
     
     var modal = document.createElement("div");
-    modal.className = params.className;    
+    modal.classList.add(params.className);
     hide(modal);
     
     modal.alert = function(message){
-        show(modal);
-        
         modal.innerHTML = "";
-        var exitModal = document.createElement("span");
-        exitModal.className = params.exitClass;
-        exitModal.innerHTML = "&times";
-        exitModal.onclick = function(){
-            hide(this.parentNode);
+        
+        var messageArea = document.createElement("div");
+        
+        var messageText = document.createElement("p");
+        messageArea.appendChild(messageText);
+        messageText.innerHTML = message;
+        
+        var exitButton = document.createElement("button");        
+        exitButton.innerHTML = "OK";
+        exitButton.onclick = function(){
+            hide(modal);
         };
         
-        modal.appendChild(exitModal);
-        var messageArea = document.createElement("p");
-        modal.appendChild(messageArea);
-        messageArea.innerHTML = message;
+                
+        messageArea.appendChild(exitButton);
+        modal.appendChild(messageArea);        
         
         show(modal);
         
@@ -35,34 +40,52 @@ function modalFW(params) {
     modal.confirm = function(message, callBack){
         modal.innerHTML = "";
         
-        var messageArea = document.createElement("p");
+        var messageArea = document.createElement("div");
         modal.appendChild(messageArea);
-        messageArea.innerHTML = message;
         
-        buttonArea = document.createElement("div");
-        buttonArea.className = params.buttonClass;
-        messageArea.appendChild(buttonArea);
+        var messageText = document.createElement("p");
+        messageArea.appendChild(messageText);
+        messageText.innerHTML = message;
+        
         
         var okButton = document.createElement("INPUT");
         okButton.setAttribute("type", "button");
         okButton.setAttribute("value", "OK");
-        okButton.className = "close";
         okButton.onclick = function(){
-            hide(this.parentNode.parentNode.parentNode);
+            hide(modal);
             callBack();
         };
-        buttonArea.appendChild(okButton);
+        messageArea.appendChild(okButton);
         
         var cancelButton = document.createElement("INPUT");
         cancelButton.setAttribute("type", "button");
         cancelButton.setAttribute("value", "Cancel");
-        cancelButton.className = "close";
         cancelButton.onclick = function(){
-            hide(this.parentNode.parentNode.parentNode);
+            hide(modal);
         };
-        buttonArea.appendChild(cancelButton);
+        
+        messageArea.appendChild(cancelButton);        
+        show(modal);
+    };
+    
+    modal.displayElement = function(element){
+        modal.innerHTML = "";
+        
+        var messageArea = document.createElement("div");
+        messageArea.appendChild(element);
+        
+        var exitButton = document.createElement("button");        
+        exitButton.innerHTML = "OK";
+        exitButton.onclick = function(){
+            hide(modal);
+        };
+        
+                
+        messageArea.appendChild(exitButton);
+        modal.appendChild(messageArea);        
         
         show(modal);
+        
     };
     
     return modal;    

@@ -1,6 +1,12 @@
 function webUserList() {
     var tableContainer = document.createElement("div");
-    
+    var modal = modalFW({
+                "className": "modal",
+                "hideClass": "close"                                        
+            });
+            
+    tableContainer.appendChild(modal);
+                        
     ajax("webAPIs/listUsersAPI.jsp", processUsersList, tableContainer);
     
     return tableContainer;
@@ -37,8 +43,10 @@ function webUserList() {
             
             list[i].webUserId = obj.webUserList[i].webUserId;
             list[i].userEmail = obj.webUserList[i].userEmail;
-            list[i].userPassword = obj.webUserList[i].userPassword;
-            // change image property to conain an image tag
+
+            list[i].password = obj.webUserList[i].userPassword;
+            // change image property to contain an image tag
+
             if(obj.webUserList[i].image.length > 0){
                 list[i].image = "<img src='" + obj.webUserList[i].image + "' style=width:10rem>";
             }
@@ -51,6 +59,7 @@ function webUserList() {
             list[i].userRoleType = obj.webUserList[i].userRoleType;
             
             list[i].update = addUpdate(list[i].webUserId);
+            list[i].delete = addDelete(list[i].webUserId);
         }
                 
         var tableParams = {
@@ -74,6 +83,25 @@ function webUserList() {
             };
             
             return img;
+        }
+        
+        function addDelete(id){
+            var img = document.createElement("img");
+
+            img.src = CRUD_icons.delete;
+            img.webUserId = id;
+            img.onclick = function() {
+                modal.confirm("Are you sure you want to delete this user?",
+                function(){                    
+                    var error = webUserMods.delete(img.webUserId, img);
+                    error.innerHTML = "...";
+                    // Use the modal to display the error message
+                    modal.displayElement(error);                    
+                });
+            };
+
+            return img;
+                
         }
     }        
     
